@@ -1,14 +1,18 @@
 import axios from "axios";
 
 const Axios = axios.create({
-  baseURL: "https://api.example.com",
+  baseURL: "http://127.0.0.1:8086",
 });
 
 Axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
+    const cuteJsonToken = localStorage.getItem("cute-json-token");
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
+    }
+    if (cuteJsonToken) {
+      config.headers["cute-json-token"] = cuteJsonToken;
     }
     return config;
   },
