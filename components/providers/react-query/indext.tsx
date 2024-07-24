@@ -11,6 +11,7 @@ import ReqctQueryProviderTypes, { ToastProps } from "./types";
 import Axios from "@/utils/axios";
 import { useToast } from "@/components/ui/use-toast";
 import axios, { AxiosError } from "axios";
+import { TOAST_FAIL_TITLE } from "@/constants/toast";
 
 const makeQueryClient = (toast: ToastProps) => {
   return new QueryClient({
@@ -20,9 +21,10 @@ const makeQueryClient = (toast: ToastProps) => {
     mutationCache: new MutationCache({
       onError(e: Error | AxiosError) {
         if (axios.isAxiosError(e)) {
+          const msg = e.response?.data.message;
           toast({
-            title: "Uh oh! Something went wrong.",
-            description: e.response?.data.message,
+            title: TOAST_FAIL_TITLE,
+            description: Array.isArray(msg) ? "Validation error" : msg,
           });
         }
       },
