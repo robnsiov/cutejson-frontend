@@ -22,7 +22,7 @@ import popupCenter from "@/utils/popup-center";
 import { Button } from "@/components/ui/button";
 import FormFieldElement from "@/components/ui/form-field";
 import AuthenticationTypes, {
-  AuthenticationMutationTypes,
+  AuthenticationMutationProps,
   authType,
 } from "./types";
 import Link from "next/link";
@@ -61,7 +61,7 @@ const Authentication = ({ selectedForm }: AuthenticationTypes) => {
       let url = "";
       if (auth === "SIGNIN") url = apis.signin;
       if (auth === "SIGNUP") url = apis.signup;
-      return Axios.post<AuthenticationMutationTypes>(url, data);
+      return Axios.post<AuthenticationMutationProps>(url, data);
     },
     onSuccess(res) {
       successMessage();
