@@ -1,7 +1,7 @@
 import { atom } from "recoil";
-import UserAtomTypes from "./types";
+import UserAtomProps from "./types";
 
-const userAtom = atom<UserAtomTypes>({
+const userAtom = atom<UserAtomProps>({
   key: "user",
   default: { status: null, data: {} },
 });

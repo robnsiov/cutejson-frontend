@@ -4,13 +4,13 @@ import { useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import jsonTokenAtom from "@/recoil/json-token-atom";
-import { JsonTokenMutateTypes } from "./types";
+import { JsonTokenMutateProps } from "./types";
 
 const useRootProvider = () => {
   const [jsonToken, setJsonToken] = useRecoilState(jsonTokenAtom);
 
   const JsonTokenMutate = useMutation({
-    mutationFn: () => Axios.post<JsonTokenMutateTypes>(apis.createJsonToken),
+    mutationFn: () => Axios.post<JsonTokenMutateProps>(apis.createJsonToken),
     onSuccess(res) {
       localStorage.setItem("cute-json-token", res.data.db);
       setJsonToken({ token: res.data.db, status: "finish" });

@@ -1,8 +1,8 @@
-export default interface ReqctQueryProviderTypes {
+export default interface ReqctQueryProviderProps {
   children: React.ReactNode;
 }
 
-export type ToastTypes = ({
+export type ToastProps = ({
   title,
   description,
 }: {

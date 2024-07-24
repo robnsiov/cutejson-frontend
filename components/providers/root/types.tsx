@@ -1,7 +1,7 @@
-export default interface RootProviderTypes {
+export default interface RootProviderProps {
   children: React.ReactNode;
 }
 
-export interface JsonTokenMutateTypes {
+export interface JsonTokenMutateProps {
   db: string;
 }

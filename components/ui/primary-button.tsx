@@ -2,11 +2,11 @@ import { Loader2 } from "lucide-react";
 
 import { Button, ButtonProps } from "@/components/ui/button";
 
-interface PrimaryButtonTypes {
+interface PrimaryButtonProps {
   loading?: boolean;
 }
 
-const PrimaryButton = (props: ButtonProps & PrimaryButtonTypes) => {
+const PrimaryButton = (props: ButtonProps & PrimaryButtonProps) => {
   const loading = props.loading;
   const btnProps = { ...props };
   delete btnProps.loading;

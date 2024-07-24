@@ -7,12 +7,12 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-import ReqctQueryProviderTypes, { ToastTypes } from "./types";
+import ReqctQueryProviderTypes, { ToastProps } from "./types";
 import Axios from "@/utils/axios";
 import { useToast } from "@/components/ui/use-toast";
 import axios, { AxiosError } from "axios";
 
-const makeQueryClient = (toast: ToastTypes) => {
+const makeQueryClient = (toast: ToastProps) => {
   return new QueryClient({
     queryCache: new QueryCache({
       onError: (error) => console.log(error),
@@ -37,7 +37,7 @@ const makeQueryClient = (toast: ToastTypes) => {
 
 let browserQueryClient: QueryClient | undefined = undefined;
 
-const getQueryClient = (toast: ToastTypes) => {
+const getQueryClient = (toast: ToastProps) => {
   if (isServer) {
     return makeQueryClient(toast);
   } else {
