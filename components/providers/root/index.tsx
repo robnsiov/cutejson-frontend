@@ -7,7 +7,7 @@ const RootProvider = ({ children }: RootProviderTypes) => {
   useRootProvider();
   return (
     <>
-      <div className="container mx-auto text-sm text-slate-800">{children}</div>
+      <div className="container mx-auto lg:px-8 px-0">{children}</div>
       <Toaster />
     </>
   );

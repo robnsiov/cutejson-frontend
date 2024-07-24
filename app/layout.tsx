@@ -4,6 +4,7 @@ import "./globals.css";
 import RootProvider from "@/components/providers/root";
 import RecoilProvder from "@/components/providers/recoil";
 import ReqctQueryProvider from "@/components/providers/react-query/indext";
+import cls from "classnames";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cls(inter.className, "text-sm text-slate-800")}>
         <RecoilProvder>
           <ReqctQueryProvider>
             <RootProvider>{children}</RootProvider>
