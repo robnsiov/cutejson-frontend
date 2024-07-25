@@ -2,12 +2,22 @@
 import { Toaster } from "@/components/ui/toaster";
 import RootProviderTypes from "./types";
 import useRootProvider from "./use";
+import cls from "classnames";
+import { usePathname } from "next/navigation";
+import pages from "@/constants/pages";
 
 const RootProvider = ({ children }: RootProviderTypes) => {
   useRootProvider();
+  const pathname = usePathname();
   return (
     <>
-      <div className="container mx-auto lg:px-8 px-0">{children}</div>
+      <div
+        className={cls({
+          "w-full max-w-7xl mx-auto": !pathname.includes(pages.dashboard),
+        })}
+      >
+        {children}
+      </div>
       <Toaster />
     </>
   );
