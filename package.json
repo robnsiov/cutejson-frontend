@@ -11,6 +11,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@mantine/hooks": "^7.11.2",
+    "@monaco-editor/react": "^4.6.0",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
@@ -51,6 +52,7 @@
     "iconsax-react": "^0.0.8",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.414.0",
+    "monaco-editor": "^0.50.0",
     "next": "14.2.5",
     "next-themes": "^0.3.0",
     "react": "^18",
@@ -58,6 +60,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.52.1",
     "react-resizable-panels": "^2.0.22",
+    "react-timer-hook": "^3.0.7",
     "recharts": "^2.12.7",
     "recoil": "^0.7.7",
     "sonner": "^1.5.0",

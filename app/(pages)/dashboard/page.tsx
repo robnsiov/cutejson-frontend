@@ -1,5 +1,11 @@
+import JsonEditor from "@/components/pages/- dashboard/- json-editor";
+
 const Page = () => {
-  return <></>;
+  return (
+    <>
+      <JsonEditor />
+    </>
+  );
 };
 
 export default Page;

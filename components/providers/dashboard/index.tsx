@@ -3,7 +3,13 @@
 import { Button } from "@/components/ui/button";
 import DashboardProviderProps from "./types";
 import Link from "next/link";
-import { BatteryFull, HambergerMenu, Home2, TriangleLogo } from "iconsax-react";
+import {
+  BatteryFull,
+  DocumentText,
+  HambergerMenu,
+  Home2,
+  TriangleLogo,
+} from "iconsax-react";
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 import {
@@ -28,7 +34,9 @@ import pages from "@/constants/pages";
 import { usePathname } from "next/navigation";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-const menuItems = [{ title: "Dashboard", icon: Home2, href: pages.dashboard }];
+const menuItems = [
+  { title: "Json Editor", icon: DocumentText, href: pages.dashboard },
+];
 
 const DashboardProvider = ({ children }: DashboardProviderProps) => {
   const pathname = usePathname();
