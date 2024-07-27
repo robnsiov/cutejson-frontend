@@ -12,12 +12,6 @@ import {
 } from "iconsax-react";
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import cls from "classnames";
 import {
   Sheet,
@@ -33,6 +27,7 @@ import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import pages from "@/constants/pages";
 import { usePathname } from "next/navigation";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import Tooltip from "@/components/shared/tooltip";
 
 const menuItems = [
   { title: "Json Editor", icon: DocumentText, href: pages.dashboard },
@@ -89,19 +84,9 @@ const DashboardProvider = ({ children }: DashboardProviderProps) => {
                 <Link href={`${pages.auth}?form=signup`}>Sign-up</Link>
               </Button>
             </div>
-            <TooltipProvider delayDuration={100}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button variant="secondary">R</Button>
-                </TooltipTrigger>
-                <TooltipContent
-                  side="left"
-                  className="border-slate-200b border text-inherit bg-white"
-                >
-                  <p>Robnsiov@gmail.com</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <Tooltip message="Robnsiov@gmail.com">
+              <Button variant="secondary">R</Button>
+            </Tooltip>
           </div>
           <div className="w-full flex justify-start items-start">
             <div
@@ -138,7 +123,10 @@ const DashboardProvider = ({ children }: DashboardProviderProps) => {
               {menuItemsElements()}
             </div>
             <div className="w-full lg:p-5 lg:pl-8 p-4">
-              <ScrollArea className="w-full h-[calc(100vh-98px)] lg:pr-7 pr-6">
+              <ScrollArea
+                type="always"
+                className="w-full h-[calc(100vh-98px)] pr-4"
+              >
                 {children}
               </ScrollArea>
             </div>

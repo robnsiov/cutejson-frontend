@@ -5,8 +5,11 @@ import PrimaryButton from "@/components/ui/primary-button";
 import { Loader2 } from "lucide-react";
 import cls from "classnames";
 import EditorElement from "@/components/shared/editor";
+// import { useElementSize } from "@mantine/hooks";
+import { useViewportSize } from "@mantine/hooks";
+import EditorProps from "./types";
 
-const Editor = () => {
+const Editor = ({ parentWidth }: EditorProps) => {
   const {
     onChange,
     setValidate,
@@ -18,10 +21,22 @@ const Editor = () => {
     timerIsRunning,
     saveJson,
   } = useMonacoEditor();
+
+  const { width: viewportWidth } = useViewportSize();
+
   return (
     <>
-      <div className="w-[calc(100%-300px)] flex justify-center items-center flex-col">
-        <div className="w-full h-[calc(100vh-150px)] border border-slate-200 rounded-lg p-4 pl-0 relative">
+      <div
+        className="flex justify-center items-center flex-col overflow-auto w-full"
+        style={{
+          width: parentWidth - (viewportWidth > 768 ? 346 : 0) + "px",
+        }}
+      >
+        <div
+          // ref={ref}
+          className=" w-full h-[calc(100vh-150px)] border border-slate-200 rounded-lg p-4 pl-0 relative
+          "
+        >
           <EditorElement
             loading={editorLoading}
             onChange={onChange}
