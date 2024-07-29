@@ -20,7 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cls(inter.className, "text-sm text-slate-800")}>
+      <body
+        className={cls(
+          inter.className,
+          "text-sm text-slate-800 overflow-x-hidden"
+        )}
+      >
         <RecoilProvder>
           <ReqctQueryProvider>
             <RootProvider>{children}</RootProvider>

@@ -11,9 +11,10 @@ const JsonEditor = () => {
       <div
         className="min-w-full flex justify-start items-start overflow-hidden
         md:flex-row flex-col"
-        ref={ref}
       >
-        <Editor parentWidth={width} />
+        <div className="w-full flex flex-col justify-center items-center">
+          <Editor parentWidth={width} />
+        </div>
         <div
           className="flex justify-center items-center flex-col md:ml-4 md:w-auto w-full
         md:mt-0 mt-8 pb-1"

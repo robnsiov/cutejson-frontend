@@ -22,14 +22,6 @@ const CuteJsonToken = () => {
   const [token, setToken] = useState("");
   const clipboard = useClipboard({ timeout: 2000 });
 
-  const rows = [
-    {
-      cuteJsonToken: token,
-      id: 1,
-      action: "",
-    },
-  ];
-
   useEffect(() => {
     const token = localStorage.getItem("cute-json-token");
     if (token) setToken(token);
@@ -52,7 +44,7 @@ const CuteJsonToken = () => {
 
   return (
     <>
-      <div className="md:w-[328px] w-full">
+      <div className="md:min-w-[328px] min-w-full">
         <div className="border border-slate-200 rounded-lg w-full">
           <Table className="w-full">
             <TableHeader>
@@ -67,36 +59,34 @@ const CuteJsonToken = () => {
               </TableRow>
             </TableHeader>
             <TableBody className="text-xs">
-              {rows.map(({ cuteJsonToken, id }) => (
-                <TableRow key={id}>
-                  <TableCell>
-                    <Tooltip message="click to copy" side="bottom">
-                      <span
-                        onClick={() => clipboard.copy(cuteJsonToken)}
-                        className="cursor-pointer"
-                      >
-                        {cuteJsonToken}
-                      </span>
-                    </Tooltip>
-                  </TableCell>
-                  <TableCell>
-                    <Tooltip message="re-new" side="bottom">
-                      <div className="flex justify-center items-center">
-                        {renewTokenMutation.isPending && (
-                          <Loader2 className="size-4 animate-spin" />
-                        )}
-                        {!renewTokenMutation.isPending && (
-                          <ArrowRotateLeft
-                            onClick={renewToken}
-                            size="16"
-                            className="mx-auto cursor-pointer"
-                          />
-                        )}
-                      </div>
-                    </Tooltip>
-                  </TableCell>
-                </TableRow>
-              ))}
+              <TableRow>
+                <TableCell>
+                  <Tooltip message="click to copy" side="bottom">
+                    <span
+                      onClick={() => clipboard.copy(token)}
+                      className="cursor-pointer min-w-[252px] min-h-2 inline-block"
+                    >
+                      {token}
+                    </span>
+                  </Tooltip>
+                </TableCell>
+                <TableCell>
+                  <Tooltip message="re-new" side="bottom">
+                    <div className="flex justify-center items-center">
+                      {renewTokenMutation.isPending && (
+                        <Loader2 className="size-4 animate-spin" />
+                      )}
+                      {!renewTokenMutation.isPending && (
+                        <ArrowRotateLeft
+                          onClick={renewToken}
+                          size="16"
+                          className="mx-auto cursor-pointer"
+                        />
+                      )}
+                    </div>
+                  </Tooltip>
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </div>

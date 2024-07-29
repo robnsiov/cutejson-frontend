@@ -28,6 +28,8 @@ import pages from "@/constants/pages";
 import { usePathname } from "next/navigation";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Tooltip from "@/components/shared/tooltip";
+import { useRecoilState } from "recoil";
+import menuIsOpenAtom from "@/recoil/menu-is-open-atom";
 
 const menuItems = [
   { title: "Json Editor", icon: DocumentText, href: pages.dashboard },
@@ -35,7 +37,7 @@ const menuItems = [
 
 const DashboardProvider = ({ children }: DashboardProviderProps) => {
   const pathname = usePathname();
-  const [menuIsOpen, setMenuIsOpen] = useState(true);
+  const [menuIsOpen, setMenuIsOpen] = useRecoilState(menuIsOpenAtom);
   const [sheetIsOpen, setSheetIsOpen] = useState(false);
 
   const menuItemsElements = () => {

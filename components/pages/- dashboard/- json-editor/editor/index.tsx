@@ -8,6 +8,8 @@ import EditorElement from "@/components/shared/editor";
 // import { useElementSize } from "@mantine/hooks";
 import { useViewportSize } from "@mantine/hooks";
 import EditorProps from "./types";
+import { useRecoilState } from "recoil";
+import menuIsOpenAtom from "@/recoil/menu-is-open-atom";
 
 const Editor = ({ parentWidth }: EditorProps) => {
   const {
@@ -23,17 +25,18 @@ const Editor = ({ parentWidth }: EditorProps) => {
   } = useMonacoEditor();
 
   const { width: viewportWidth } = useViewportSize();
+  const [mesuIsOpen] = useRecoilState(menuIsOpenAtom);
 
   return (
     <>
-      <div
-        className="flex justify-center items-center flex-col overflow-auto w-full"
-        style={{
-          width: parentWidth - (viewportWidth > 768 ? 346 : 0) + "px",
-        }}
-      >
+      <div className="w-full flex justify-center items-center flex-col">
         <div
-          // ref={ref}
+          style={{
+            width:
+              viewportWidth < 1024
+                ? viewportWidth - 50 + "px"
+                : viewportWidth - 320 + (!mesuIsOpen ? 170 : 0) - 330 + "px",
+          }}
           className=" w-full h-[calc(100vh-150px)] border border-slate-200 rounded-lg p-4 pl-0 relative
           "
         >
@@ -41,7 +44,7 @@ const Editor = ({ parentWidth }: EditorProps) => {
             loading={editorLoading}
             onChange={onChange}
             onMount={() => setEditorHasMounted(true)}
-            className="h-full"
+            className="h-full w-full"
             onValidate={(validate) => setValidate(validate)}
             defaultLanguage="json"
             value={json}
