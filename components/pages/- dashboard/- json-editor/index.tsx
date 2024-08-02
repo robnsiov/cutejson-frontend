@@ -2,6 +2,7 @@
 import { useElementSize } from "@mantine/hooks";
 import CuteJsonToken from "./cute-json-token";
 import Editor from "./editor";
+import Postman from "./postman";
 
 const JsonEditor = () => {
   const { ref, width } = useElementSize();
@@ -20,6 +21,7 @@ const JsonEditor = () => {
         md:mt-0 mt-8 pb-1"
         >
           <CuteJsonToken />
+          <Postman />
         </div>
       </div>
     </>

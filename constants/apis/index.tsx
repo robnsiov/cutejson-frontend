@@ -2,6 +2,7 @@ const apis = {
   createJsonToken: "/db",
   editJsonDB: "/db",
   getJsonDB: "/db",
+  userRequest: "/db",
   revokeToken: "/db/revoke-token",
   signup: "/user/signup",
   signin: "/user/signin",

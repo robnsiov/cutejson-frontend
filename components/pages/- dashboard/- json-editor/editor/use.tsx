@@ -6,6 +6,8 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import Axios from "@/utils/axios";
 import apis from "@/constants/apis";
 import { useTimer } from "react-timer-hook";
+import { useRecoilState } from "recoil";
+import jsonDBAtom from "@/recoil/json-db-atom";
 
 const date = new Date();
 const useMonacoEditor = () => {
@@ -14,11 +16,12 @@ const useMonacoEditor = () => {
   const [validate, setValidate] = useState<editor.IMarker[]>([]);
   const [editorHasMounted, setEditorHasMounted] = useState(false);
   const [editorLoading, setEditorLoading] = useState(true);
+  const [, setGlobalJsonDB] = useRecoilState(jsonDBAtom);
 
   const jsonDBQuery = useQuery({
     queryKey: ["json-db"],
     queryFn: () => Axios({ url: apis.getJsonDB }),
-    enabled: false,
+    enabled: true,
   });
 
   const {
@@ -34,17 +37,12 @@ const useMonacoEditor = () => {
     const jsonData = jsonDBQuery.data?.data;
     if (!jsonData) return;
     setJson(JSON.stringify(jsonData, null, 2));
+    setGlobalJsonDB({ db: JSON.stringify(jsonData), status: "finish" });
   }, [jsonDBQuery.data]);
 
   useEffect(() => {
     if (jsonDBQuery.isFetched && editorHasMounted) setEditorLoading(false);
   }, [jsonDBQuery, editorHasMounted]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      jsonDBQuery.refetch();
-    }, 5000);
-  }, []);
 
   const editJsonDBMutattion = useMutation({
     mutationFn: (data: Object) =>
@@ -53,6 +51,10 @@ const useMonacoEditor = () => {
       const time = new Date();
       time.setSeconds(time.getSeconds() + 10);
       restart(time);
+      setGlobalJsonDB({ db: json, status: "finish" });
+    },
+    onError() {
+      setGlobalJsonDB({ db: "{}", status: "error" });
     },
   });
 
