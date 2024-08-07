@@ -4,6 +4,7 @@ import CuteJsonToken from "./cute-json-token";
 import Editor from "./editor";
 import Postman from "./postman";
 import FakeDataGenerator from "./fake-data-generator";
+import RecoveryDB from "./recovery-db";
 
 const JsonEditor = () => {
   const { ref, width } = useElementSize();
@@ -24,6 +25,7 @@ const JsonEditor = () => {
           <CuteJsonToken />
           <Postman />
           <FakeDataGenerator />
+          <RecoveryDB />
         </div>
       </div>
     </>

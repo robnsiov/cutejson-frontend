@@ -3,6 +3,8 @@ const apis = {
   editJsonDB: "/db",
   getJsonDB: "/db",
   userRequest: "/db",
+  jsonDBBackups: "/backup",
+  jsonDBBackup: "/backup",
   revokeToken: "/db/revoke-token",
   generateFakeData: "/faker",
   signup: "/user/signup",
