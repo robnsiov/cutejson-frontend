@@ -28,6 +28,8 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import Editor from "@/components/shared/editor";
 import { Badge } from "@/components/ui/badge";
+import CopyToClipboard from "@/components/shared/copy-to-clipboard";
+import baseUrls from "@/constants/base-urls";
 
 const requestMethods = ["GET", "POST", "PUT", "DELETE"];
 const requestBodyObjectPlaceholder = { posts: { title: "foo" } };
@@ -35,7 +37,7 @@ const requestBodyObjectPlaceholder = { posts: { title: "foo" } };
 const Postman = () => {
   const { ref: syntaxHighlighterRef, height: syntaxHighlighterHeight } =
     useElementSize();
-  const [activeRequestMenthod, setActiveRequestMethod] = useState("GET");
+  const [activeRequestMethod, setActiveRequestMethod] = useState("GET");
   const [manaulRender, setManualRender] = useState(true);
   const [activeRequestUrl, setActiveRequestUrl] = useState("");
   const [requestQueryParams, setRequestQueryParams] = useState("");
@@ -80,7 +82,7 @@ const Postman = () => {
     try {
       setRequestIsLoading(true);
       const res = await Axios({
-        method: activeRequestMenthod,
+        method: activeRequestMethod,
         url: `${apis.userRequest}${activeRequestUrl}${requestQueryParams}`,
         data: requestBody,
       });
@@ -102,7 +104,7 @@ const Postman = () => {
   useDidUpdate(() => {
     if (!requestResponse) return;
     if (
-      (activeRequestMenthod === "PUT" || activeRequestMenthod === "POST") &&
+      (activeRequestMethod === "PUT" || activeRequestMethod === "POST") &&
       requestResponse.status <= 299
     ) {
       queryClient.refetchQueries({ queryKey: ["json-db"] });
@@ -123,20 +125,18 @@ const Postman = () => {
   };
 
   useDidUpdate(() => {
-    if (!(activeRequestMenthod === "POST" || activeRequestMenthod === "PUT"))
+    if (!(activeRequestMethod === "POST" || activeRequestMethod === "PUT"))
       setShowRequestBody(false);
-    if (activeRequestMenthod === "POST") setRequestQueryParams("");
+    if (activeRequestMethod === "POST") setRequestQueryParams("");
     setRequestRespose(undefined);
-  }, [activeRequestMenthod]);
-
-  console.log(requestBody);
+  }, [activeRequestMethod]);
 
   return (
     <>
       <div className="w-full flex justify-start items-start flex-col mt-3">
         <div className="w-full grid grid-cols-2 gap-2 pr-0.5">
           <Select
-            value={activeRequestMenthod}
+            value={activeRequestMethod}
             onValueChange={(method) => setActiveRequestMethod(method)}
           >
             <SelectTrigger>
@@ -152,24 +152,31 @@ const Postman = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <Select
-            value={activeRequestUrl}
-            onValueChange={(url) => setActiveRequestUrl(url)}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Method" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {requestUrls.map((url) => (
-                  <SelectItem key={url} value={url}>
-                    {url}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          {activeRequestMenthod !== "POST" && (
+          <div className="flex justify-center items-center">
+            <div className="mr-2 w-full">
+              <Select
+                value={activeRequestUrl}
+                onValueChange={(url) => setActiveRequestUrl(url)}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="end-point" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {requestUrls.map((url) => (
+                      <SelectItem key={url} value={url}>
+                        {url}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <CopyToClipboard
+              text={`${baseUrls.backendApi}/db${activeRequestUrl}`}
+            />
+          </div>
+          {activeRequestMethod !== "POST" && (
             <Input
               type="text"
               value={requestQueryParams}
@@ -180,8 +187,8 @@ const Postman = () => {
             />
           )}
 
-          {(activeRequestMenthod === "POST" ||
-            activeRequestMenthod === "PUT") && (
+          {(activeRequestMethod === "POST" ||
+            activeRequestMethod === "PUT") && (
             <div className="col-span-2">
               <Button
                 className="h-auto p-0"
