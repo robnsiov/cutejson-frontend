@@ -28,7 +28,7 @@ const ApisList = () => {
       <Dialog>
         <DialogTrigger className="w-full justify-start" asChild>
           <Button variant="link" className="pl-0 py-0 h-auto">
-            <span>Apis list? click here</span>
+            <span>Apis list?</span>
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">

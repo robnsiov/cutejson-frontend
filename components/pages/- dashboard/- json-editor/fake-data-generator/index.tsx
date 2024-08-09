@@ -27,9 +27,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import Tooltip from "@/components/shared/tooltip";
-import { Badge } from "@/components/ui/badge";
-import { useClipboard } from "@mantine/hooks";
-import { CheckCheck } from "lucide-react";
+import CopyToClipboard from "@/components/shared/copy-to-clipboard";
 
 const defaultValueOfFakerJsonEditor = { name: "{{person.lastName}}" };
 
@@ -37,7 +35,6 @@ const FakeDataGenerator = () => {
   const [jsonEditor, setJsonEditor] = useState("");
   const [activeTab, setActiveTab] = useState("generate");
   const [repeatParams, setRepeatParams] = useState("10");
-  const clipboard = useClipboard({ timeout: 500 });
 
   const generateFakeDataGenerateMutation = useMutation({
     mutationFn: (data: string) =>
@@ -67,7 +64,7 @@ const FakeDataGenerator = () => {
       <Dialog>
         <DialogTrigger className="w-full justify-start" asChild>
           <Button variant="link" className="pl-0 py-0 h-auto">
-            <span>Generate fake data? click here</span>
+            <span>Generate fake data?</span>
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
@@ -135,22 +132,11 @@ const FakeDataGenerator = () => {
               <TabsContent value="result">
                 <div className="w-full mt-2  border border-slate-200 p-2 rounded-md relative">
                   {fakeData && (
-                    <div className="absolute -top-3 right-6 z-10 flex justify-center items-center">
-                      {clipboard.copied ? (
-                        <Badge className="" variant="secondary">
-                          <CheckCheck className="size-4" />
-                        </Badge>
-                      ) : (
-                        <Badge
-                          onClick={() =>
-                            clipboard.copy(JSON.stringify(fakeData, null, 2))
-                          }
-                          className="cursor-pointer"
-                          variant="secondary"
-                        >
-                          copy
-                        </Badge>
-                      )}
+                    <div className="absolute -top-4 right-6 z-10 flex justify-center items-center">
+                      <CopyToClipboard
+                        className="bg-white scale-75"
+                        text={JSON.stringify(fakeData, null, 2)}
+                      />
                     </div>
                   )}
 

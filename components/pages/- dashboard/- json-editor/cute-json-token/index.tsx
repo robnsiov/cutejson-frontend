@@ -61,7 +61,7 @@ const CuteJsonToken = () => {
             <TableBody className="text-xs">
               <TableRow>
                 <TableCell>
-                  <Tooltip message="click to copy" side="bottom">
+                  <Tooltip message="copy" side="bottom">
                     <span
                       onClick={() => clipboard.copy(token)}
                       className="cursor-pointer min-w-[252px] min-h-2 inline-block"

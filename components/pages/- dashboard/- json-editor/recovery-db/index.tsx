@@ -23,10 +23,10 @@ import { CheckCheck, Loader2 } from "lucide-react";
 import { useState } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import CopyToClipboard from "@/components/shared/copy-to-clipboard";
 const RecoveryDB = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedBackupDate, setSelectedBackupDate] = useState("");
-  const clipboard = useClipboard({ timeout: 500 });
 
   const {
     data: backupsRes,
@@ -73,7 +73,7 @@ const RecoveryDB = () => {
       <Dialog open={modalIsOpen} onOpenChange={setModalIsOpen}>
         <DialogTrigger className="w-full justify-start" asChild>
           <Button variant="link" className="pl-0 py-0 h-auto">
-            <span>Recover Json DB? click here</span>
+            <span>Recover json DB?</span>
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
@@ -113,22 +113,11 @@ const RecoveryDB = () => {
             {backup && (
               <div className="w-full border-slate-200 border p-2  rounded-md relative !mt-5">
                 {!backupIsLoading && (
-                  <div className="absolute -top-3 right-6 z-10 flex justify-center items-center">
-                    {clipboard.copied ? (
-                      <Badge className="" variant="secondary">
-                        <CheckCheck className="size-4" />
-                      </Badge>
-                    ) : (
-                      <Badge
-                        onClick={() =>
-                          clipboard.copy(JSON.stringify(backup.data, null, 2))
-                        }
-                        className="cursor-pointer"
-                        variant="secondary"
-                      >
-                        copy
-                      </Badge>
-                    )}
+                  <div className="absolute -top-4 right-6 z-10 flex justify-center items-center">
+                    <CopyToClipboard
+                      className="bg-white scale-75"
+                      text={JSON.stringify(backup.data, null, 2)}
+                    />
                   </div>
                 )}
                 <div
