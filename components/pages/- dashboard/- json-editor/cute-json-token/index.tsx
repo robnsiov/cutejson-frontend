@@ -46,6 +46,7 @@ const CuteJsonToken = () => {
     <>
       <div className="md:min-w-[328px] min-w-full">
         <div className="border border-slate-200 rounded-lg w-full">
+          
           <Table className="w-full">
             <TableHeader>
               <TableRow>

@@ -29,7 +29,7 @@ const Editor = ({ parentWidth }: EditorProps) => {
 
   return (
     <>
-      <div className="w-full flex justify-center items-center flex-col">
+      <div className="w-full flex justify-start items-start flex-col">
         <div
           style={{
             width:
@@ -37,7 +37,7 @@ const Editor = ({ parentWidth }: EditorProps) => {
                 ? viewportWidth - 50 + "px"
                 : viewportWidth - 320 + (!mesuIsOpen ? 170 : 0) - 330 + "px",
           }}
-          className=" w-full h-[calc(100vh-150px)] border border-slate-200 rounded-lg p-4 pl-0 relative
+          className=" w-full md:h-[calc(100vh-150px)] h-[50vh] border border-slate-200 rounded-lg p-4 pl-0 relative
           "
         >
           <EditorElement
@@ -50,9 +50,7 @@ const Editor = ({ parentWidth }: EditorProps) => {
             value={json}
           />
         </div>
-        <div className="w-full flex justify-between items-center mt-3">
-          <span>Press ctrl+s to save </span>
-
+        <div className="w-full flex justify-start items-center mt-3">
           <PrimaryButton
             className={cls(
               `transition-all duration-300`,

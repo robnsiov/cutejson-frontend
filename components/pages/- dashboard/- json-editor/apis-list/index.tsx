@@ -36,7 +36,7 @@ const ApisList = () => {
             <DialogTitle>Apis list</DialogTitle>
             <DialogDescription className="text-slate-800 font-semibold !mt-4">
               <span className="mr-2">Set</span>
-              <span className="bg-slate-200" style={{ wordBreak: "break-all" }}>
+              <span className="bg-slate-200 break-all">
                 {`req.headers["cute-json-token"] = "${localStorage.getItem(
                   "cute-json-token"
                 )}"`}{" "}

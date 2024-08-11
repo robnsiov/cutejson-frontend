@@ -77,6 +77,8 @@
   background: #334155;
 }
 
-
+.language-javascript{
+  white-space: pre-wrap !important;
+}
 
 

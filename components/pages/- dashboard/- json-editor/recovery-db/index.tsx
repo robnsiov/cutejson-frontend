@@ -20,13 +20,14 @@ import Axios from "@/utils/axios";
 import { useClipboard, useDidUpdate } from "@mantine/hooks";
 import { useQuery } from "@tanstack/react-query";
 import { CheckCheck, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import CopyToClipboard from "@/components/shared/copy-to-clipboard";
 const RecoveryDB = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedBackupDate, setSelectedBackupDate] = useState("");
+  const [firstBackupHasLoaded, setFirstBackupHasLoaded] = useState(false);
 
   const {
     data: backupsRes,
@@ -43,6 +44,7 @@ const RecoveryDB = () => {
     data: backupRes,
     isLoading: backupIsLoading,
     refetch: backupRefetch,
+    isSuccess: backupSuccess,
   } = useQuery({
     queryKey: ["json-db-backup", selectedBackupDate],
     queryFn: () =>
@@ -56,6 +58,7 @@ const RecoveryDB = () => {
   useDidUpdate(() => {
     if (modalIsOpen) backupsRefetch();
     else {
+      setFirstBackupHasLoaded(false);
       setSelectedBackupDate("");
     }
   }, [modalIsOpen]);
@@ -66,6 +69,12 @@ const RecoveryDB = () => {
 
   const backups = backupsRes?.data ?? [];
   const backup = backupRes?.data;
+
+  useDidUpdate(() => {
+    if (backupSuccess) setFirstBackupHasLoaded(true);
+  }, [backupSuccess]);
+
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -105,14 +114,14 @@ const RecoveryDB = () => {
                 ))}
               </div>
             )}
-            {backupIsLoading && (
+            {backupIsLoading && !firstBackupHasLoaded && (
               <div className="w-full flex justify-center items-center !mt-6">
                 <Loader2 className="size-4 animate-spin" />
               </div>
             )}
-            {backup && (
+            {(backup || firstBackupHasLoaded) && (
               <div className="w-full border-slate-200 border p-2  rounded-md relative !mt-5">
-                {!backupIsLoading && (
+                {!backupIsLoading && backup?.data && (
                   <div className="absolute -top-4 right-6 z-10 flex justify-center items-center">
                     <CopyToClipboard
                       className="bg-white scale-75"
@@ -129,23 +138,25 @@ const RecoveryDB = () => {
                   )}
                 ></div>
                 <div className="w-full h-[200px]">
-                  <ScrollArea
-                    className={`w-full h-[200px] relative z-10 p-2`}
-                    type="always"
-                  >
-                    <div className="w-full">
-                      <SyntaxHighlighter
-                        language="javascript"
-                        style={docco}
-                        className=" p-2 w-full !bg-transparent"
-                        useInlineStyles
-                        customStyle={{ color: "#2e56b5" }}
-                      >
-                        {JSON.stringify(backup.data, null, 2)}
-                      </SyntaxHighlighter>
-                    </div>
-                    <ScrollBar orientation="horizontal" />
-                  </ScrollArea>
+                  {backup?.data && (
+                    <ScrollArea
+                      className={`w-full h-[200px] relative z-10 p-2`}
+                      type="always"
+                    >
+                      <div className="w-full overflow-hidden">
+                        <SyntaxHighlighter
+                          language="javascript"
+                          style={docco}
+                          className="!w-full p-2 !bg-transparent !text-left"
+                          useInlineStyles
+                          customStyle={{ color: "#2e56b5" }}
+                        >
+                          {JSON.stringify(backup.data, null, 2)}
+                        </SyntaxHighlighter>
+                      </div>
+                      <ScrollBar orientation="horizontal" />
+                    </ScrollArea>
+                  )}
                 </div>
               </div>
             )}

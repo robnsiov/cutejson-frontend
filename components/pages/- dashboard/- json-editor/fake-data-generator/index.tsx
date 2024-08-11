@@ -97,16 +97,14 @@ const FakeDataGenerator = () => {
                     defaultLanguage="json"
                     onChange={(value) => setJsonEditor(value ?? "")}
                     loading={false}
-                    defaultValue={JSON.stringify(
-                      defaultValueOfFakerJsonEditor,
-                      null,
-                      2
-                    )}
+                    defaultValue={
+                      jsonEditor ??
+                      JSON.stringify(defaultValueOfFakerJsonEditor, null, 2)
+                    }
                   />
                 </div>
                 <Tooltip message="repeat" side="bottom">
                   <div className="flex justify-start items-start mt-2 flex-col">
-                    {/* <span className="text-xs mb-1">Repeat</span> */}
                     <InputOTP
                       value={repeatParams}
                       onChange={(value) => setRepeatParams(value)}
@@ -145,7 +143,7 @@ const FakeDataGenerator = () => {
                       <SyntaxHighlighter
                         language="javascript"
                         style={docco}
-                        className=" p-2 w-full !bg-transparent"
+                        className=" p-2 w-full !bg-transparent !text-left"
                         useInlineStyles
                         customStyle={{ color: "#2e56b5" }}
                       >

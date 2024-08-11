@@ -134,12 +134,12 @@ const Postman = () => {
   return (
     <>
       <div className="w-full flex justify-start items-start flex-col mt-3">
-        <div className="w-full grid grid-cols-2 gap-2 pr-0.5">
+        <div className="w-full flex justify-between items-start flex-wrap gap-2">
           <Select
             value={activeRequestMethod}
             onValueChange={(method) => setActiveRequestMethod(method)}
           >
-            <SelectTrigger>
+            <SelectTrigger className="md:w-[calc(50%-4px)] w-full">
               <SelectValue placeholder="Method" />
             </SelectTrigger>
             <SelectContent>
@@ -152,7 +152,7 @@ const Postman = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center md:w-[calc(50%-4px)] w-full">
             <div className="mr-2 w-full">
               <Select
                 value={activeRequestUrl}
@@ -182,14 +182,14 @@ const Postman = () => {
               value={requestQueryParams}
               onChange={({ target: { value } }) => setRequestQueryParams(value)}
               placeholder="?query=username&startsWith=jack"
-              className="col-span-2 placeholder:opacity-70"
+              className="w-full placeholder:opacity-70"
               spellCheck={false}
             />
           )}
 
           {(activeRequestMethod === "POST" ||
             activeRequestMethod === "PUT") && (
-            <div className="col-span-2">
+            <div className="w-full">
               <Button
                 className="h-auto p-0"
                 onClick={() => setShowRequestBody(!showRequestBody)}
@@ -200,7 +200,7 @@ const Postman = () => {
             </div>
           )}
           {showRequestBody && (
-            <div className="col-span-2 border border-slate-200 rounded-lg relative">
+            <div className="w-full border border-slate-200 rounded-lg relative">
               <Badge
                 className="absolute -top-3 right-6 z-20"
                 variant="secondary"
@@ -216,7 +216,7 @@ const Postman = () => {
             </div>
           )}
           {requestResponse && (
-            <div className="col-span-2 flex justify-start items-start flex-col relative">
+            <div className="w-full flex justify-start items-start flex-col relative">
               <div
                 className={cls(
                   `w-full flex justify-start items-center`,
@@ -255,7 +255,7 @@ const Postman = () => {
                     <SyntaxHighlighter
                       language="javascript"
                       style={docco}
-                      className=" p-2 w-full !bg-transparent"
+                      className=" p-2 w-full !bg-transparent !text-left"
                       useInlineStyles
                       customStyle={{ color: "#2e56b5" }}
                     >
@@ -268,11 +268,7 @@ const Postman = () => {
             </div>
           )}
 
-          <PrimaryButton
-            loading={requestisLoading}
-            onClick={sendRequest}
-            className="col-start-2"
-          >
+          <PrimaryButton loading={requestisLoading} onClick={sendRequest}>
             Send
           </PrimaryButton>
         </div>
