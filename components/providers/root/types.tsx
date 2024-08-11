@@ -5,3 +5,8 @@ export default interface RootProviderProps {
 export interface JsonTokenMutateProps {
   db: string;
 }
+
+export interface UserInfoUseQueryProps {
+  db: string;
+  email: string;
+}

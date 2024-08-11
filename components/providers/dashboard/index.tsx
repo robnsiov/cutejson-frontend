@@ -30,6 +30,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import Tooltip from "@/components/shared/tooltip";
 import { useRecoilState } from "recoil";
 import menuIsOpenAtom from "@/recoil/menu-is-open-atom";
+import useDashboardProvider from "./use";
 
 const menuItems = [
   { title: "Json Editor", icon: DocumentText, href: pages.dashboard },
@@ -39,6 +40,7 @@ const DashboardProvider = ({ children }: DashboardProviderProps) => {
   const pathname = usePathname();
   const [menuIsOpen, setMenuIsOpen] = useRecoilState(menuIsOpenAtom);
   const [sheetIsOpen, setSheetIsOpen] = useState(false);
+  const { user } = useDashboardProvider();
 
   const menuItemsElements = () => {
     return (
@@ -62,6 +64,8 @@ const DashboardProvider = ({ children }: DashboardProviderProps) => {
     );
   };
 
+  const userEmail = user.data.email;
+
   return (
     <>
       <div className="w-full h-screen">
@@ -77,18 +81,24 @@ const DashboardProvider = ({ children }: DashboardProviderProps) => {
             <Link href={pages.dashboard}>
               <TriangleLogo />
             </Link>
-            <div className="flex justify-center items-center">
-              <Button variant={"link"}>
-                <Link href={`${pages.auth}?form=signin`}>Sign-in</Link>
-              </Button>
-              <span>/</span>
-              <Button variant={"link"}>
-                <Link href={`${pages.auth}?form=signup`}>Sign-up</Link>
-              </Button>
-            </div>
-            <Tooltip message="Robnsiov@gmail.com">
-              <Button variant="secondary">R</Button>
-            </Tooltip>
+            {user.status === "error" && (
+              <div className="flex justify-center items-center">
+                <Button variant={"link"}>
+                  <Link href={`${pages.auth}?form=signin`}>Sign-in</Link>
+                </Button>
+                <span>/</span>
+                <Button variant={"link"}>
+                  <Link href={`${pages.auth}?form=signup`}>Sign-up</Link>
+                </Button>
+              </div>
+            )}
+            {userEmail && (
+              <Tooltip message={userEmail}>
+                <Button className="uppercase" variant="secondary">
+                  {userEmail.at(0)}
+                </Button>
+              </Tooltip>
+            )}
           </div>
           <div className="w-full flex justify-start items-start">
             <div

@@ -17,9 +17,12 @@ import { useMutation } from "@tanstack/react-query";
 import Axios from "@/utils/axios";
 import apis from "@/constants/apis";
 import renewTokenMutationProps from "./types";
+import { useRecoilState } from "recoil";
+import userAtom from "@/recoil/user-atom";
 
 const CuteJsonToken = () => {
   const [token, setToken] = useState("");
+  const [user] = useRecoilState(userAtom);
   const clipboard = useClipboard({ timeout: 2000 });
 
   useEffect(() => {
@@ -46,7 +49,6 @@ const CuteJsonToken = () => {
     <>
       <div className="md:min-w-[328px] min-w-full">
         <div className="border border-slate-200 rounded-lg w-full">
-          
           <Table className="w-full">
             <TableHeader>
               <TableRow>
@@ -65,27 +67,33 @@ const CuteJsonToken = () => {
                   <Tooltip message="copy" side="bottom">
                     <span
                       onClick={() => clipboard.copy(token)}
-                      className="cursor-pointer min-w-[252px] min-h-2 inline-block"
+                      className="cursor-pointer max-w-[200px] min-h-2 inline-block break-all"
                     >
                       {token}
                     </span>
                   </Tooltip>
                 </TableCell>
                 <TableCell>
-                  <Tooltip message="re-new" side="bottom">
+                  {user.status === "finish" ? (
+                    <Tooltip message="re-new" side="bottom">
+                      <div className="flex justify-center items-center">
+                        {renewTokenMutation.isPending && (
+                          <Loader2 className="size-4 animate-spin" />
+                        )}
+                        {!renewTokenMutation.isPending && (
+                          <ArrowRotateLeft
+                            onClick={renewToken}
+                            size="16"
+                            className="mx-auto cursor-pointer"
+                          />
+                        )}
+                      </div>
+                    </Tooltip>
+                  ) : (
                     <div className="flex justify-center items-center">
-                      {renewTokenMutation.isPending && (
-                        <Loader2 className="size-4 animate-spin" />
-                      )}
-                      {!renewTokenMutation.isPending && (
-                        <ArrowRotateLeft
-                          onClick={renewToken}
-                          size="16"
-                          className="mx-auto cursor-pointer"
-                        />
-                      )}
+                      <span>-</span>
                     </div>
-                  </Tooltip>
+                  )}
                 </TableCell>
               </TableRow>
             </TableBody>

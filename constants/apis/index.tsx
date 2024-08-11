@@ -7,6 +7,7 @@ const apis = {
   jsonDBBackup: "/backup",
   revokeToken: "/db/revoke-token",
   generateFakeData: "/faker",
+  userInfo: "/user",
   signup: "/user/signup",
   signin: "/user/signin",
   forgotPassword: "/user/forgot-pass",
