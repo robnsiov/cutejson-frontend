@@ -82,3 +82,53 @@
 }
 
 
+
+
+.markdown h1, 
+.markdown h2, 
+.markdown h3, 
+.markdown h4, 
+.markdown h5, 
+.markdown h6 {
+    @apply font-bold my-2 text-slate-700
+}
+    
+.markdown {
+    @apply leading-relaxed
+}
+.markdown h1 {
+    @apply text-3xl
+}
+.markdown h2 {
+    @apply text-2xl
+}
+.markdown h3 {
+    @apply text-xl
+}
+.markdown h4 {
+    @apply text-lg
+}
+.markdown h5 {
+    @apply text-base
+}
+.markdown h6 {
+    @apply text-sm
+}
+
+.markdown a {
+    @apply underline opacity-90
+}
+
+.markdown p {
+    @apply my-2
+}
+
+.markdown pre {
+    @apply bg-slate-200 p-3 rounded-lg
+}
+.markdown ul {
+    @apply list-disc
+}
+.markdown ul li {
+    @apply ml-8 my-2
+}

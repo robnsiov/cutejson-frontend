@@ -13,7 +13,9 @@ const RootProvider = ({ children }: RootProviderTypes) => {
     <>
       <div
         className={cls({
-          "w-full max-w-7xl mx-auto": !pathname.includes(pages.dashboard),
+          "w-full max-w-7xl mx-auto":
+            !pathname.includes(pages.dashboard) &&
+            pathname.includes(pages.dashboard),
         })}
       >
         {children}
