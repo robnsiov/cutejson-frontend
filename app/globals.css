@@ -64,9 +64,11 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground ;
   }
 }
+
+
 
 ::selection {
   color: #fff;
@@ -82,7 +84,9 @@
 }
 
 
-
+.markdown{
+  @apply md:text-base text-[15px] flex justify-start items-start flex-col w-full
+}
 
 .markdown h1, 
 .markdown h2, 
@@ -90,29 +94,29 @@
 .markdown h4, 
 .markdown h5, 
 .markdown h6 {
-    @apply font-bold my-2 text-slate-700
+    @apply font-bold md:my-2 text-slate-700 my-1
 }
     
 .markdown {
     @apply leading-relaxed
 }
 .markdown h1 {
-    @apply text-3xl
+    @apply md:text-3xl text-2xl
 }
 .markdown h2 {
-    @apply text-2xl
+    @apply md:text-2xl text-xl
 }
 .markdown h3 {
-    @apply text-xl
+    @apply md:text-xl text-base
 }
 .markdown h4 {
-    @apply text-lg
+    @apply md:text-lg text-sm
 }
 .markdown h5 {
-    @apply text-base
+    @apply md:text-base text-xs
 }
 .markdown h6 {
-    @apply text-sm
+    @apply md:text-sm text-[8px]
 }
 
 .markdown a {
@@ -120,15 +124,32 @@
 }
 
 .markdown p {
-    @apply my-2
+    @apply my-2 
 }
 
 .markdown pre {
-    @apply bg-slate-200 p-3 rounded-lg
+    @apply bg-slate-200 p-3 rounded-lg w-full
 }
+.markdown code {
+    @apply bg-slate-200 px-2 rounded inline-block whitespace-pre-wrap break-all
+}
+
 .markdown ul {
     @apply list-disc
 }
 .markdown ul li {
     @apply ml-8 my-2
+}
+
+.markdown .markdown__heading a{
+  text-decoration: none;
+}
+.markdown .markdown__heading a::after{
+  content: "🔗";
+  font-size: 18px;
+  margin-left: 5px;
+  opacity: 0;  
+}
+.markdown .markdown__heading:hover a::after{
+  opacity: 1;  
 }
