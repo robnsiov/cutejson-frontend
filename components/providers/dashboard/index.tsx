@@ -4,13 +4,20 @@ import { Button } from "@/components/ui/button";
 import DashboardProviderProps from "./types";
 import Link from "next/link";
 import {
+  ArrowDown2,
   BatteryFull,
+  Blend,
+  Box1,
+  Diamonds,
   DocumentText,
+  Grid3,
   HambergerMenu,
   Home2,
+  Level,
+  Personalcard,
   TriangleLogo,
 } from "iconsax-react";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, icons } from "lucide-react";
 import { useState } from "react";
 import cls from "classnames";
 import {
@@ -31,34 +38,35 @@ import Tooltip from "@/components/shared/tooltip";
 import { useRecoilState } from "recoil";
 import menuIsOpenAtom from "@/recoil/menu-is-open-atom";
 import useDashboardProvider from "./use";
+import MenuItemElement from "./menu-item";
+import MenuItemElementProps from "./menu-item/types";
 
-const menuItems = [
-  { title: "Json Editor", icon: DocumentText, href: pages.dashboard },
+const items: Array<MenuItemElementProps> = [
+  { title: "Json Editor", icon: Grid3, href: pages.dashboard, children: [] },
+  {
+    title: "Documentation",
+    icon: DocumentText,
+    href: pages.documentation,
+    children: [
+      { title: "GET", href: pages.getDocumentation },
+      { title: "POST", href: pages.postDocumentation },
+      { title: "PUT", href: pages.putDocumentation },
+      { title: "DELETE", href: pages.deleteDocumentation },
+      { title: "Data generator", href: pages.dataGeneratorDocumentation },
+    ],
+  },
 ];
 
 const DashboardProvider = ({ children }: DashboardProviderProps) => {
-  const pathname = usePathname();
   const [menuIsOpen, setMenuIsOpen] = useRecoilState(menuIsOpenAtom);
   const [sheetIsOpen, setSheetIsOpen] = useState(false);
   const { user } = useDashboardProvider();
 
-  const menuItemsElements = () => {
+  const menuItems = () => {
     return (
       <>
-        {menuItems.map(({ icon: Icon, title, href }) => (
-          <Button
-            className="w-full"
-            key={title}
-            variant={pathname === href ? "secondary" : "ghost"}
-          >
-            <Link
-              href={href}
-              className="w-full flex justify-start items-center overflow-hidden"
-            >
-              <Icon className="mr-3 min-w-6 " size="24" variant="Broken" />
-              <span>{title}</span>
-            </Link>
-          </Button>
+        {items.map((item) => (
+          <MenuItemElement {...item} key={item.title} />
         ))}
       </>
     );
@@ -127,12 +135,12 @@ const DashboardProvider = ({ children }: DashboardProviderProps) => {
                     </SheetHeader>
                   </VisuallyHidden.Root>
                   <div className="w-full flex justify-center items-center flex-col mt-6">
-                    {menuItemsElements()}
+                    {menuItems()}
                   </div>
                 </SheetContent>
               </Sheet>
 
-              {menuItemsElements()}
+              {menuItems()}
             </div>
             <div className="w-full lg:p-5 lg:pl-8 p-4">
               <ScrollArea
