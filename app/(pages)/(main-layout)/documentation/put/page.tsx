@@ -1,4 +1,10 @@
+import PutDocumentation from "@/components/pages/- documentation/put";
+
 const Page = () => {
-  return <></>;
+  return (
+    <>
+      <PutDocumentation />
+    </>
+  );
 };
 export default Page;
