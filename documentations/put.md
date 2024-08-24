@@ -13,6 +13,8 @@ use filters to specify data must be update
 for example:
 
 `/users?query=age&equal=22` here only output of the filter will be updated.
+`/db/users` here users will be updated.
+`/db` here your json db will be updated.
 
 
 
