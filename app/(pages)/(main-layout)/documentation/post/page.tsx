@@ -1,4 +1,10 @@
+import PostDocumentation from "@/components/pages/- documentation/post";
+
 const Page = () => {
-  return <></>;
+  return (
+    <>
+      <PostDocumentation />
+    </>
+  );
 };
 export default Page;
