@@ -1,20 +1,24 @@
 
 # [PUT](#PUT)
 
-put [data](/documentation#data-types) for `/foo` in your json db
+Update data in your JSON database for `/foo`.
 
-if the `/foo` existed so data will be updated.
-else you will get an error with status code `404`
+If `/foo` exists, the data will be updated. Otherwise, you will receive an error with status code `404`.
 
 
-## Wich data will be update?
-use filters to specify data must be update
 
-for example:
+## [Which Data Will Be Updated](#which-data-will-be-updated)?
+Use filters to specify the data that should be updated.
 
-`/users?query=age&equal=22` here only output of the filter will be updated.
-`/db/users` here users will be updated.
-`/db` here your json db will be updated.
+
+For example:
+
+
+`/users?query=age&equal=22` - Only the output of the filter will be updated.
+
+`/db/users` - All users will be updated.
+
+`/db` - Your Json DB will be updated.
 
 
 

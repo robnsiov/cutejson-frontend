@@ -1,19 +1,23 @@
 
 # [DELETE](#DELETE)
-delete data for `/foo` in your json db
+Delete data from `/foo` in your json DB.
 
-if the `/foo` existed so data will be deleted.
-else you will get an error with status code `404`
+If `/foo` exists, the data will be deleted. Otherwise, you will receive an error with status code `404`.
 
 
-## Wich data will be deleted?
-use filters to specify data must be delete
 
-for example:
+## Which Data Will Be Deleted?
+Use filters to specify the data that should be deleted.
 
-`/db/users?query=age&equal=22` here only output of the filter will be delete.
-`/db/users` here users will be delete.
-`/db` here your json db will be delete.
+
+For example:
+
+
+`/db/users?query=age&equal=22`  - Only the output of the filter will be deleted.
+
+`/db/users` - All users will be deleted.
+
+`/db` Your JSON DB will be deleted.
 
 
 

@@ -1,10 +1,11 @@
 
 # [POST](#POST)
 
-post [data](/documentation#data-types) for `/foo` in your json db
+Post data to `/foo` in your Json DB.
 
-if the `/foo` existed so data will be updated.
-else `/foo` will create with input data.
+
+If `/foo` exists, the data will be updated. Otherwise, `/foo` will be created with the input data.
+
 
 
 ## [Supported Data](#supported-data)

@@ -80,7 +80,7 @@ Filters work like this:
 ```https://api.cutejson.dev/db/users?query=X&filter1=q1,Y&filter2=q2,Z```
 
 
-If the output of /users is:
+If the output of `/users` is:
 
 1- An ```array of objects``` :
 
@@ -121,7 +121,7 @@ You can filter a boolean property like admin in the sample data.
 
 
 
-for example: ```https://api.cutejson.dev/db/users?query=admin&equal=1```
+For example: ```https://api.cutejson.dev/db/users?query=admin&equal=1```
 
 
 

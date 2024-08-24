@@ -7,7 +7,7 @@ import Link from "next/link";
 import cls from "classnames";
 
 const documentationPages = [
-  { path: pages.documentation, name: "Documentation" },
+  { path: pages.documentation, name: "Get Started" },
   { path: pages.getDocumentation, name: "GET" },
   { path: pages.postDocumentation, name: "POST" },
   { path: pages.putDocumentation, name: "PUT" },
