@@ -12,5 +12,6 @@ const apis = {
   signin: "/user/signin",
   forgotPassword: "/user/forgot-pass",
   forgotPasswordConfirmation: "/user/forgot-pass/confirmation",
+  contatcUs: "/contact-us",
 };
 export default apis;

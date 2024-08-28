@@ -14,6 +14,7 @@ const MenuItemElement = ({
   title,
   children,
   className,
+  exactly,
 }: MenuItemElementProps & { className?: string }) => {
   const pathname = usePathname();
   const [menuIsOpen, setMenuIsOpen] = useState(false);
@@ -23,7 +24,11 @@ const MenuItemElement = ({
         onClick={() => setMenuIsOpen(!menuIsOpen)}
         className={twMerge(`w-full`, className)}
         key={title}
-        variant={pathname.includes(href) ? "secondary" : "ghost"}
+        variant={
+          (exactly ? pathname === href : pathname.includes(href))
+            ? "secondary"
+            : "ghost"
+        }
       >
         <Link
           href={href}

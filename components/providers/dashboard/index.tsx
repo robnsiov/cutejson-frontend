@@ -14,6 +14,7 @@ import {
   HambergerMenu,
   Home2,
   Level,
+  Microphone,
   Personalcard,
   TriangleLogo,
 } from "iconsax-react";
@@ -42,7 +43,13 @@ import MenuItemElement from "./menu-item";
 import MenuItemElementProps from "./menu-item/types";
 
 const items: Array<MenuItemElementProps> = [
-  { title: "Json Editor", icon: Grid3, href: pages.dashboard, children: [] },
+  {
+    title: "Json editor",
+    icon: Grid3,
+    href: pages.dashboard,
+    children: [],
+    exactly: true,
+  },
   {
     title: "Documentation",
     icon: DocumentText,
@@ -54,6 +61,13 @@ const items: Array<MenuItemElementProps> = [
       { title: "DELETE", href: pages.deleteDocumentation },
       { title: "Data generator", href: pages.dataGeneratorDocumentation },
     ],
+  },
+  {
+    title: "Contact us",
+    icon: Microphone,
+    href: pages.contactUs,
+    children: [],
+    exactly: true,
   },
 ];
 

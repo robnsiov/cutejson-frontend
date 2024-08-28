@@ -7,6 +7,7 @@ const pages = {
   putDocumentation: "/documentation/put",
   deleteDocumentation: "/documentation/delete",
   dataGeneratorDocumentation: "/documentation/data-generator",
+  contactUs: "/dashboard/contact-us",
 };
 
 export default pages;
