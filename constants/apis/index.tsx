@@ -13,5 +13,7 @@ const apis = {
   forgotPassword: "/user/forgot-pass",
   forgotPasswordConfirmation: "/user/forgot-pass/confirmation",
   contatcUs: "/contact-us",
+  likesCount: "/about-me/likes",
+  insertLike: "/about-me/like",
 };
 export default apis;

@@ -8,6 +8,7 @@ const pages = {
   deleteDocumentation: "/documentation/delete",
   dataGeneratorDocumentation: "/documentation/data-generator",
   contactUs: "/dashboard/contact-us",
+  aboutMe: "/dashboard/about-me",
 };
 
 export default pages;
