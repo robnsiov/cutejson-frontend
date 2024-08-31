@@ -10,6 +10,7 @@ import { useViewportSize } from "@mantine/hooks";
 import EditorProps from "./types";
 import { useRecoilState } from "recoil";
 import menuIsOpenAtom from "@/recoil/menu-is-open-atom";
+import { CONTAINER_MAX_WIDTH } from "@/constants/sizes";
 
 const Editor = ({ parentWidth }: EditorProps) => {
   const {
@@ -25,6 +26,8 @@ const Editor = ({ parentWidth }: EditorProps) => {
   } = useMonacoEditor();
 
   const { width: viewportWidth } = useViewportSize();
+  const vpWidth =
+    viewportWidth > CONTAINER_MAX_WIDTH ? CONTAINER_MAX_WIDTH : viewportWidth;
   const [mesuIsOpen] = useRecoilState(menuIsOpenAtom);
 
   return (
@@ -33,9 +36,9 @@ const Editor = ({ parentWidth }: EditorProps) => {
         <div
           style={{
             width:
-              viewportWidth < 1024
-                ? viewportWidth - 50 + "px"
-                : viewportWidth - 320 + (!mesuIsOpen ? 170 : 0) - 330 + "px",
+              vpWidth < 1024
+                ? vpWidth - 50 + "px"
+                : vpWidth - 320 + (!mesuIsOpen ? 170 : 0) - 330 + "px",
           }}
           className=" w-full md:h-[calc(100vh-150px)] h-[50vh] border border-slate-200 rounded-lg p-4 pl-0 relative
           "

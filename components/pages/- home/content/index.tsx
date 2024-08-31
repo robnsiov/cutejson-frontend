@@ -4,6 +4,7 @@ import Carousel from "../carousel";
 import Link from "next/link";
 import pages from "@/constants/pages";
 import LinkElement from "./link";
+import carouselData from "./data";
 
 const Content = () => {
   return (
@@ -20,15 +21,13 @@ const Content = () => {
         <Title />
         <Carousel />
         <div className="w-full grid grid-cols-5">
-          {Array.from({ length: 5 }).map((_, i) => (
+          {carouselData.map(({ description, title }, i) => (
             <Card
-              key={i}
+              key={title}
               className="flex"
-              desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
-      suscipit architecto nostrum similique nulla illo commodi quos iusto
-      fugit pariatur perferendis"
+              desc={description}
               number={`0${i + 1}`}
-              title="Projects"
+              title={title}
             />
           ))}
         </div>
