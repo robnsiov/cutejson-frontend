@@ -54,7 +54,7 @@ const Likes = () => {
 
   return (
     <>
-      <div className="w-full flex justify-end mt-6">
+      <div className="flex justify-end fixed md:top-[90px] top-[74px] md:right-6 right-4 bg-white">
         {likesCountIsLoading && !likesCountData && (
           <div className="w-[60px] flex justify-center items-center mr-4 h-[31px]">
             <Loader2 className="size-4 animate-spin" />
