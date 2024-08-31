@@ -5,6 +5,7 @@ import useRootProvider from "./use";
 import cls from "classnames";
 import { usePathname } from "next/navigation";
 import pages from "@/constants/pages";
+import { CONTAINER_MAX_WIDTH } from "@/constants/sizes";
 
 const RootProvider = ({ children }: RootProviderTypes) => {
   useRootProvider();
@@ -12,10 +13,9 @@ const RootProvider = ({ children }: RootProviderTypes) => {
   return (
     <>
       <div
-        className={cls({
-          "w-full max-w-7xl mx-auto":
-            !pathname.includes(pages.dashboard) &&
-            pathname.includes(pages.dashboard),
+        style={{ maxWidth: `${CONTAINER_MAX_WIDTH}px` }}
+        className={cls(`w-full mx-auto`, {
+          "border-slate-200 border-x": pathname.includes("dashboard"),
         })}
       >
         {children}
