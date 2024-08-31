@@ -7,7 +7,7 @@ const pages = {
   putDocumentation: "/documentation/put",
   deleteDocumentation: "/documentation/delete",
   dataGeneratorDocumentation: "/documentation/data-generator",
-  contactUs: "/dashboard/contact-us",
+  contactUs: "/dashboard/contact-me",
   aboutMe: "/dashboard/about-me",
 };
 

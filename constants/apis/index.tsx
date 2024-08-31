@@ -12,7 +12,7 @@ const apis = {
   signin: "/user/signin",
   forgotPassword: "/user/forgot-pass",
   forgotPasswordConfirmation: "/user/forgot-pass/confirmation",
-  contatcUs: "/contact-us",
+  contatcUs: "/contact-me",
   likesCount: "/about-me/likes",
   insertLike: "/about-me/like",
 };
