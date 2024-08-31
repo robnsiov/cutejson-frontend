@@ -13,10 +13,10 @@ const JsonEditor = () => {
   return (
     <>
       <div
-        className="min-w-full flex justify-start items-start overflow-hidden
+        className="min-w-full flex justify-start items-start
         md:flex-row flex-col"
       >
-        <div className="w-full flex flex-col justify-center items-center">
+        <div className="w-full flex flex-col justify-center items-center md:sticky top-0 left-0">
           <Editor parentWidth={width} />
         </div>
         <div
