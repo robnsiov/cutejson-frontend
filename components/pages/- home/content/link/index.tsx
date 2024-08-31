@@ -8,7 +8,7 @@ const LinkElement = ({ children, href, className }: LinkElementProps) => {
       <Link
         href={href}
         className={twMerge(
-          "md:text-3xl text-xl mt-6 underline transition-all duration-200 hover:text-slate-600",
+          "md:text-2xl text-xl mt-6 underline transition-all duration-200 hover:text-slate-600",
           className
         )}
       >

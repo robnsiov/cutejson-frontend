@@ -22,7 +22,9 @@ const Title = () => {
             <span className="text-lg mr-4">in</span> cute-json
           </div>
         </h1>
-        <LinkElement href={pages.dashboard}>Get Started</LinkElement>
+        <LinkElement className="md:text-3xl text-2xl" href={pages.dashboard}>
+          Get Started
+        </LinkElement>
       </div>
     </>
   );
