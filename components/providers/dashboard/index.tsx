@@ -17,6 +17,7 @@ import {
   Microphone,
   Personalcard,
   TriangleLogo,
+  Unlimited,
 } from "iconsax-react";
 import { ChevronRight, icons } from "lucide-react";
 import { useState } from "react";
@@ -66,6 +67,13 @@ const items: Array<MenuItemElementProps> = [
     title: "Contact us",
     icon: Microphone,
     href: pages.contactUs,
+    children: [],
+    exactly: true,
+  },
+  {
+    title: "About me",
+    icon: Unlimited,
+    href: pages.aboutMe,
     children: [],
     exactly: true,
   },
