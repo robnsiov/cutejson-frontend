@@ -64,7 +64,7 @@ const items: Array<MenuItemElementProps> = [
     ],
   },
   {
-    title: "Contact us",
+    title: "Contact me",
     icon: Microphone,
     href: pages.contactUs,
     children: [],

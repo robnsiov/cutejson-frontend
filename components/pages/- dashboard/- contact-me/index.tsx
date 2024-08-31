@@ -65,11 +65,10 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center h-[calc(100vh-98px)]">
+    <div className="w-full flex justify-center items-center h-[calc(100vh-180px)]">
       <div className="max-w-lg w-full">
         <div>
-          <h3 className="font-bold text-lg">Contact Us</h3>
-          <div className="mb-2 text-slate-500">
+          <div className="text-slate-500">
             Fill out the form below to get in touch with{" "}
             <Button variant={"link"} className="p-0">
               <Link target="_blank" href={"https://github.com/robnsiov"}>
@@ -82,7 +81,7 @@ const ContactUs = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="mt-6 flex justify-center items-center flex-col sm:w-[400px] w-full"
+            className="mt-2 flex justify-center items-center flex-col sm:w-[400px] w-full sm:px-0 px-1"
           >
             <FormFieldElement
               type="text"
