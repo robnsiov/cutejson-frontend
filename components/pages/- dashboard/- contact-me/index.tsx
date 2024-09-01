@@ -22,7 +22,7 @@ const contactUsSchema = z.object({
   message: z.string().min(5).max(4500),
 });
 
-const ContactUs = () => {
+const ContactMe = () => {
   const { toast } = useToast();
 
   const [files, setFiles] = useState<FileList | null>();
@@ -65,7 +65,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center h-[calc(100vh-180px)]">
+    <div className="w-full flex justify-center items-center h-[calc(100vh-180px)] sm:px-0 px-1">
       <div className="max-w-lg w-full">
         <div>
           <div className="text-slate-500">
@@ -81,7 +81,7 @@ const ContactUs = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="mt-2 flex justify-center items-center flex-col sm:w-[400px] w-full sm:px-0 px-1"
+            className="mt-2 flex justify-center items-center flex-col sm:w-[400px] w-full"
           >
             <FormFieldElement
               type="text"
@@ -122,4 +122,4 @@ const ContactUs = () => {
   );
 };
 
-export default ContactUs;
+export default ContactMe;

@@ -4,9 +4,10 @@ import MenuItemProps from "./types";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ArrowDown2 } from "iconsax-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import cls from "classnames";
+import documentationPages from "@/constants/documentation-pages";
 
 const MenuItemElement = ({
   href,
@@ -14,21 +15,23 @@ const MenuItemElement = ({
   title,
   children,
   className,
-  exactly,
-}: MenuItemElementProps & { className?: string }) => {
+  menuIsOpen,
+}: MenuItemElementProps & { className?: string; menuIsOpen?: boolean }) => {
   const pathname = usePathname();
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [menuItemIsOpen, setmenuItemIsOpen] = useState(false);
+
+  useEffect(() => {
+    const docPage = documentationPages.find(({ path }) => path === pathname);
+    if (docPage) setmenuItemIsOpen(true);
+  }, [pathname]);
+
   return (
     <>
       <Button
-        onClick={() => setMenuIsOpen(!menuIsOpen)}
-        className={twMerge(`w-full`, className)}
+        onClick={() => setmenuItemIsOpen(!menuItemIsOpen)}
+        className={twMerge(`w-full mb-1`, className)}
         key={title}
-        variant={
-          (exactly ? pathname === href : pathname.includes(href))
-            ? "secondary"
-            : "ghost"
-        }
+        variant={pathname === href ? "secondary" : "ghost"}
       >
         <Link
           href={href}
@@ -44,7 +47,7 @@ const MenuItemElement = ({
           <div>
             {children && children.length !== 0 && (
               <ArrowDown2
-                className={cls({ "rotate-180": menuIsOpen })}
+                className={cls({ "rotate-180": menuItemIsOpen })}
                 size="12"
               />
             )}
@@ -53,6 +56,7 @@ const MenuItemElement = ({
       </Button>
       {children &&
         menuIsOpen &&
+        menuItemIsOpen &&
         children.length !== 0 &&
         children.map((menu) => <MenuItemElement {...menu} key={menu.title} />)}
     </>

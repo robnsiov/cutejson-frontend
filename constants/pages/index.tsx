@@ -1,7 +1,7 @@
 const pages = {
   auth: "/auth",
   dashboard: "/dashboard",
-  documentation: "/documentation",
+  getStartedDocumentation: "/documentation/get-started",
   getDocumentation: "/documentation/get",
   postDocumentation: "/documentation/post",
   putDocumentation: "/documentation/put",

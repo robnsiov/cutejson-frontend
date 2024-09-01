@@ -5,15 +5,7 @@ import pages from "@/constants/pages";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import cls from "classnames";
-
-const documentationPages = [
-  { path: pages.documentation, name: "Get Started" },
-  { path: pages.getDocumentation, name: "GET" },
-  { path: pages.postDocumentation, name: "POST" },
-  { path: pages.putDocumentation, name: "PUT" },
-  { path: pages.deleteDocumentation, name: "DELETE" },
-  { path: pages.dataGeneratorDocumentation, name: "Data generator" },
-];
+import documentationPages from "@/constants/documentation-pages";
 
 const DocumentationProvider = ({ children }: DocumentationProviderProps) => {
   const pathname = usePathname();

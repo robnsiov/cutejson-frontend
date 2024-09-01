@@ -81,7 +81,6 @@ const useMonacoEditor = () => {
     return () => window.removeEventListener("keydown", ctrlPlusSpreventaion);
   }, [json, validate, timerIsRunning]);
 
-  // console.log(json);
 
   const onChange = (editorOutput: string | undefined) => {
     if (!editorOutput) return;

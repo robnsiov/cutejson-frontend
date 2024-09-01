@@ -2,6 +2,7 @@ import MD from "react-markdown";
 import remarkGfm from "remark-gfm";
 import MarkdownProps from "./types";
 import React from "react";
+import Link from "next/link";
 
 function flatten(text: string, child: any): any {
   return typeof child === "string"
@@ -10,7 +11,6 @@ function flatten(text: string, child: any): any {
 }
 
 function HeadingRenderer(props: any) {
-  console.log(props);
   var children = React.Children.toArray(props.children);
   var text = children.reduce(flatten, "");
   var slug = text.toLowerCase().replace(/\W/g, "-");
@@ -32,6 +32,7 @@ const Markdown = ({ md }: MarkdownProps) => {
           h4: HeadingRenderer,
           h5: HeadingRenderer,
           h6: HeadingRenderer,
+          a: (c: any) => <Link {...c}>{c.children}</Link>,
         }}
         className={"markdown mb-5"}
         remarkPlugins={[remarkGfm]}

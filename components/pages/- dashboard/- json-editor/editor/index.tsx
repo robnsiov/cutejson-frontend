@@ -53,7 +53,7 @@ const Editor = ({ parentWidth }: EditorProps) => {
             value={json}
           />
         </div>
-        <div className="w-full flex justify-start items-center mt-3">
+        <div className="w-full flex justify-end items-center mt-3">
           <PrimaryButton
             className={cls(
               `transition-all duration-300`,

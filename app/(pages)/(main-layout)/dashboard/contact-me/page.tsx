@@ -1,4 +1,4 @@
-import ContactUs from "@/components/pages/- dashboard/- contact-me";
+import ContactMe from "@/components/pages/- dashboard/- contact-me";
 import ContactUsTitle from "@/components/pages/- dashboard/- contact-me/title";
 
 import { Metadata } from "next";
@@ -14,7 +14,7 @@ const Page = () => {
   return (
     <>
       <ContactUsTitle />
-      <ContactUs />
+      <ContactMe />
     </>
   );
 };

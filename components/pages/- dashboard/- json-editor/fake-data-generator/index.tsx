@@ -64,7 +64,7 @@ const FakeDataGenerator = () => {
       <Dialog>
         <DialogTrigger className="w-full justify-start" asChild>
           <Button variant="link" className="pl-0 py-0 h-auto">
-            <span>Generate fake data?</span>
+            <span>Generate fake data</span>
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">

@@ -42,6 +42,7 @@ import menuIsOpenAtom from "@/recoil/menu-is-open-atom";
 import useDashboardProvider from "./use";
 import MenuItemElement from "./menu-item";
 import MenuItemElementProps from "./menu-item/types";
+import { useDidUpdate } from "@mantine/hooks";
 
 const items: Array<MenuItemElementProps> = [
   {
@@ -49,18 +50,24 @@ const items: Array<MenuItemElementProps> = [
     icon: Grid3,
     href: pages.dashboard,
     children: [],
-    exactly: true,
   },
   {
     title: "Documentation",
     icon: DocumentText,
-    href: pages.documentation,
+    href: "#",
     children: [
+      {
+        title: "Get Started",
+        href: pages.getStartedDocumentation,
+      },
       { title: "GET", href: pages.getDocumentation },
       { title: "POST", href: pages.postDocumentation },
       { title: "PUT", href: pages.putDocumentation },
       { title: "DELETE", href: pages.deleteDocumentation },
-      { title: "Data generator", href: pages.dataGeneratorDocumentation },
+      {
+        title: "Data generator",
+        href: pages.dataGeneratorDocumentation,
+      },
     ],
   },
   {
@@ -68,27 +75,30 @@ const items: Array<MenuItemElementProps> = [
     icon: Microphone,
     href: pages.contactUs,
     children: [],
-    exactly: true,
   },
   {
     title: "About me",
     icon: Unlimited,
     href: pages.aboutMe,
     children: [],
-    exactly: true,
   },
 ];
 
 const DashboardProvider = ({ children }: DashboardProviderProps) => {
+  const pathname = usePathname();
   const [menuIsOpen, setMenuIsOpen] = useRecoilState(menuIsOpenAtom);
   const [sheetIsOpen, setSheetIsOpen] = useState(false);
   const { user } = useDashboardProvider();
+
+  useDidUpdate(() => {
+    setSheetIsOpen(false);
+  }, [pathname]);
 
   const menuItems = () => {
     return (
       <>
         {items.map((item) => (
-          <MenuItemElement {...item} key={item.title} />
+          <MenuItemElement {...item} key={item.title} menuIsOpen={menuIsOpen} />
         ))}
       </>
     );
@@ -136,7 +146,7 @@ const DashboardProvider = ({ children }: DashboardProviderProps) => {
                 `h-[calc(100vh-58px)] border-r-slate-200 border-r
             lg:flex hidden justify-start items-center flex-col p-3 space-y-2 pt-10 relative
              transition-all duration-300`,
-                menuIsOpen ? "min-w-[250px] w-[250px]" : "min-w-[80px] w-[80px]"
+                menuIsOpen ? "min-w-[250px] w-[250px]" : "min-w-[83px] w-[83px]"
               )}
             >
               <Button
@@ -172,8 +182,6 @@ const DashboardProvider = ({ children }: DashboardProviderProps) => {
                 {children}
               </ScrollArea>
             </div>
-
-            {/* <div className="w-full lg:p-5 lg:pl-8 p-4 h-[calc(100vh-78px)] overflow-auto"></div> */}
           </div>
         </div>
       </div>

@@ -5,7 +5,6 @@ import useAuthProvider from "./use";
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const { jsonToken, user } = useAuthProvider();
-  console.log(jsonToken, user);
 
   return (
     <>
@@ -14,7 +13,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
         </div>
       )}
-      {jsonToken.status === "finish" && user.status === "error" && children}
+      {jsonToken.status === "finish" && user.status === "error" && (
+        <div className="px-4">{children}</div>
+      )}
     </>
   );
 };
