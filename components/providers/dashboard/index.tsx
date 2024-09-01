@@ -43,6 +43,7 @@ import useDashboardProvider from "./use";
 import MenuItemElement from "./menu-item";
 import MenuItemElementProps from "./menu-item/types";
 import { useDidUpdate } from "@mantine/hooks";
+import Image from "next/image";
 
 const items: Array<MenuItemElementProps> = [
   {
@@ -118,8 +119,14 @@ const DashboardProvider = ({ children }: DashboardProviderProps) => {
               onClick={() => setSheetIsOpen(true)}
               className="text-lg cursor-pointer lg:hidden"
             />
-            <Link href={pages.dashboard}>
-              <TriangleLogo />
+            <Link href={"/"} className="w-[25px] lg:inline-block hidden">
+              <Image
+                width={100}
+                height={100}
+                className="rounded-lg"
+                src={"/logo.png"}
+                alt="logo"
+              />
             </Link>
             {user.status === "error" && (
               <div className="flex justify-center items-center">
