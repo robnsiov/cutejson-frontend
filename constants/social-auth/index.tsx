@@ -1,6 +1,6 @@
 const socialAuth = {
-  google: "http://127.0.0.1:8086/auth/google",
-  github: "http://127.0.0.1:8086/auth/github",
+  google: "https://api.cutejson.dev/auth/google",
+  github: "https://api.cutejson.dev/auth/github",
 };
 
 export default socialAuth;
