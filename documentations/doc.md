@@ -98,6 +98,6 @@ For example: `GET`, `POST`, `PUT`, `DELETE`
 
 `https://api.cutejson.dev/db/books?q=price&lt=12000&page=20,40`
 
-`https://api.cutejson.dev/db/comments?q=user_id&populate=user`
+`https://api.cutejson.dev/db/comments?query=comments&populate=user_comments,id`
 
 

@@ -1,6 +1,8 @@
+import baseUrls from "../base-urls";
+
 const socialAuth = {
-  google: "https://api.cutejson.dev/auth/google",
-  github: "https://api.cutejson.dev/auth/github",
+  google: `${baseUrls.backendApi}/auth/google`,
+  github: `${baseUrls.backendApi}/auth/github`,
 };
 
 export default socialAuth;

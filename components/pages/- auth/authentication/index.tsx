@@ -100,7 +100,7 @@ const Authentication = ({ selectedForm }: AuthenticationTypes) => {
         });
       else if (e.data.auth) {
         successMessage();
-        router.replace(pages.dashboard);
+        location.href = pages.dashboard;
       }
     });
   }, []);

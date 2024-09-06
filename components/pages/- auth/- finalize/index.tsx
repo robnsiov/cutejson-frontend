@@ -1,39 +1,64 @@
 "use client";
 
+import apis from "@/constants/apis";
 import userAtom from "@/recoil/user-atom";
+import Axios from "@/utils/axios";
+import { useMutation } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo } from "react";
 import { useRecoilState } from "recoil";
+import socialAuthConfirmationMutatuinProps from "./types";
+import jsonDBAtom from "@/recoil/json-db-atom";
 
 const AuthFinalize = () => {
   const searchParams = useSearchParams();
-  const email = searchParams.get("email");
-  const cuteJsonToken = searchParams.get("db");
-  const token = searchParams.get("token");
   const error = searchParams.get("error");
-  const [_, setUser] = useRecoilState(userAtom);
+  const code = searchParams.get("code");
+  const [, setUser] = useRecoilState(userAtom);
+  const [, setDB] = useRecoilState(jsonDBAtom);
 
-  useEffect(() => {
-    if (token && email && cuteJsonToken) {
+  const confirmationError = () => {
+    const channel = new BroadcastChannel("auth");
+    channel.postMessage({
+      error,
+    });
+    // window.close();
+  };
+
+  const socialAuthConfirmationMutatuin = useMutation({
+    mutationFn: () =>
+      Axios<socialAuthConfirmationMutatuinProps>({
+        url: apis.socialAuthConfirmation,
+        data: { code },
+        method: "POST",
+      }),
+    mutationKey: ["social-auth-confirmation"],
+    onSuccess(res) {
       const channel = new BroadcastChannel("auth");
-      localStorage.setItem("token", token);
-      localStorage.setItem("cute-json-token", cuteJsonToken);
-      setUser({ status: "finish", data: { email } });
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("cute-json-token", res.data.db);
+      // setUser({ status: "finish", data: { email: res.data.email } });
+      // setDB({ db: res.data.db, status: "finish" });
       channel.postMessage({
         auth: true,
       });
       window.close();
+    },
+    onError() {
+      confirmationError();
+    },
+  });
+
+  useEffect(() => {
+    if (code) {
+      socialAuthConfirmationMutatuin.mutate();
     }
-  }, [email, cuteJsonToken, token]);
+  }, [code]);
 
   useEffect(() => {
     if (error) {
-      const channel = new BroadcastChannel("auth");
-      channel.postMessage({
-        error,
-      });
-      window.close();
+      confirmationError();
     }
   }, [error]);
 

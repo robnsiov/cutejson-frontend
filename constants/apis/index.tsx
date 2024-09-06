@@ -15,5 +15,6 @@ const apis = {
   contatcUs: "/contact-me",
   likesCount: "/about-me/likes",
   insertLike: "/about-me/like",
+  socialAuthConfirmation: "/user/social-auth/confirmation",
 };
 export default apis;
