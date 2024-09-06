@@ -12,33 +12,29 @@ We support all of the structures defined in the json below:
 
 ```
 {
-  users: [
+  "users": [
     {
-      age: 22,
-      name: "john",
-      email: "john@example.com",
-      comments: [1, 2],
-      address: { country: "USA" },
-      admin: false
+      "age": 22,
+      "name": "john",
+      "email": "john@example.com",
+      "comments": [1, 20],
+      "address": { "country": "USA" },
+      "admin": false
     },
     {
-      age: 30,
-      name: "sara",
-      email: "sara@example.com",
-      comments: [3],
-      address: { country: "UK" },
-      admin: true
-    },
+      "age": 30,
+      "name": "sara",
+      "email": "sara@example.com",
+      "comments": [3],
+      "address": { "country": "UK" },
+      "admin": true
+    }
   ],
-  commnets: [
-    { id: 1, content: "this is a comment from sara" },
-    { id: 2, content: "this is another comment from sara" },
-    { id: 3, content: "this a comment from john" },
-  ],
-  prices: [30, 50, 6000, 80, 15.3, 12],
-  sizes: ["sm", "md", "lg", "xl", "2xl"],
-  verification: false,
-  hasColor: null,
+  "user_comments": [
+    { "id": 1, "content": "this is a comment from sara" },
+    { "id": 2, "content": "this is another comment from sara" },
+    { "id": 3, "content": "this a comment from john" }
+  ]
 }
 
 ```
@@ -159,7 +155,7 @@ For example: ```https://api.cutejson.dev/db/users?query=admin&equal=1```
 
 ```noSelect``` => ```?noSelect=password,confirmPassword```
 
-```populate``` works on an **array of objects**, **array of strings**, or **array of numbers**.
+```populate``` => ```?query=comments&populate=user_comments,id```
 
 #### Note:
 All methods support nested parameters => `?query=category.title&equal=pc&lt=1500,price.amount.value`

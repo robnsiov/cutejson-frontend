@@ -91,12 +91,12 @@ For example: `GET`, `POST`, `PUT`, `DELETE`
 `https://api.cutejson.dev/db/user`
 
 
-`https://api.cutejson.dev/db/posts?q=title&eqaul=FC25`
+`https://api.cutejson.dev/db/posts?query=title&eqaul=FC25`
 
 
 `https://api.cutejson.dev/db/products?contains=description,FC25&regex=company,^Foo`
 
-`https://api.cutejson.dev/db/books?q=price&lt=12000&page=20,40`
+`https://api.cutejson.dev/db/books?query=price&lt=12000&page=20,40`
 
 `https://api.cutejson.dev/db/comments?query=comments&populate=user_comments,id`
 
