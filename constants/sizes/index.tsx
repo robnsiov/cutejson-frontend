@@ -1,0 +1,3 @@
+const CONTAINER_MAX_WIDTH = 1700;
+
+export { CONTAINER_MAX_WIDTH };
