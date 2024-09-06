@@ -1,6 +1,5 @@
 const baseUrls = {
-  backendApi: "http://127.0.0.1:8086",
-  // backendApi: "https://api.cutejson.dev",
+  backendApi: process.env.NEXT_PUBLIC_BASE_URL,
 };
 
 export default baseUrls;
