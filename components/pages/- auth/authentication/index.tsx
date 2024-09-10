@@ -26,6 +26,7 @@ import AuthenticationTypes, {
   authType,
 } from "./types";
 import Link from "next/link";
+import jsonTokenAtom from "@/recoil/json-token-atom";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -36,6 +37,7 @@ const Authentication = ({ selectedForm }: AuthenticationTypes) => {
   const router = useRouter();
   const pathname = usePathname();
   const [_, setUser] = useRecoilState(userAtom);
+  const [jsonToken] = useRecoilState(jsonTokenAtom);
   const [socialMedia, setSocialMedia] = useState<"GITHUB" | "GOOGLE">();
   const githubRef = useClickOutside(() => setSocialMedia(undefined));
   const googleRef = useClickOutside(() => setSocialMedia(undefined));
@@ -86,6 +88,10 @@ const Authentication = ({ selectedForm }: AuthenticationTypes) => {
     let url = "https://google.com";
     if (socialMedia === "GITHUB") url = socialAuth.github;
     else if (socialMedia === "GOOGLE") url = socialAuth.google;
+
+    url = url + `?db=${jsonToken.token}`;
+
+    console.log(url);
 
     window.open(url, socialMedia, popupCenter({ w: 450, h: 550 }));
   }, [socialMedia]);
