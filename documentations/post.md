@@ -10,7 +10,7 @@ If `/foo` exists, the data will be updated. Otherwise, `/foo` will be created wi
 
 ## [Supported Data](#supported-data)
 
-We support all the [data types](/documentation#data-types) that JSON supports.
+We support all the [data types](/documentation/get-started#data-types) that JSON supports.
 
 
 

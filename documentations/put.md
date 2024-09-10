@@ -24,12 +24,12 @@ For example:
 
 ## [Supported Filters](#supported-filters)
 
-We support all the [filters](/documentation/get#filters).
+We support all the [filters](/documentation/get-started#filters).
 
 
 ## [Supported Data](#supported-data)
 
-We support all the [data types](/documentation#data-types) that JSON supports.
+We support all the [data types](/documentation/get-started#data-types) that JSON supports.
 
 
 
