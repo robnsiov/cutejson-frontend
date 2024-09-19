@@ -172,28 +172,29 @@ const Authentication = ({ selectedForm }: AuthenticationTypes) => {
             </div>
             <div
               className="w-full"
-              ref={githubRef}
-              onClick={() => socialMediaOnclick("GITHUB")}
-            >
-              <PrimaryButton
-                loading={socialMedia === "GITHUB"}
-                className="mt-6 w-full"
-                variant="outline"
-              >
-                <GitHubLogoIcon className="mr-1" /> GitHub
-              </PrimaryButton>
-            </div>
-            <div
-              className="w-full"
               ref={googleRef}
               onClick={() => socialMediaOnclick("GOOGLE")}
             >
               <PrimaryButton
                 loading={socialMedia === "GOOGLE"}
-                className="mt-2 w-full"
+                className="mt-6 w-full"
                 variant="outline"
               >
                 <Google className="text-slate-900 mr-1" size="15" /> Google
+              </PrimaryButton>
+            </div>
+            <div
+              className="w-full cursor-not-allowed"
+              ref={githubRef}
+              // onClick={() => socialMediaOnclick("GITHUB")}
+            >
+              <PrimaryButton
+                disabled
+                loading={socialMedia === "GITHUB"}
+                className="mt-2 w-full"
+                variant="outline"
+              >
+                <GitHubLogoIcon className="mr-1" /> GitHub
               </PrimaryButton>
             </div>
           </div>
