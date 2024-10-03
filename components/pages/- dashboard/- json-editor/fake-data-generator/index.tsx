@@ -28,8 +28,17 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import Tooltip from "@/components/shared/tooltip";
 import CopyToClipboard from "@/components/shared/copy-to-clipboard";
+import Link from "next/link";
 
-const defaultValueOfFakerJsonEditor = { name: "{{person.lastName}}" };
+const defaultValueOfFakerJsonEditor = {
+  name: "{{person.lastName}}",
+  bio: "{{person.bio}}",
+  gender: "{{person.gender}}",
+  phone: "{{phone.number}}",
+  ip: "{{internet.ipv4}}",
+  city: "{{location.city}}",
+  country: "{{location.country}}",
+};
 
 const FakeDataGenerator = () => {
   const [jsonEditor, setJsonEditor] = useState("");
@@ -53,7 +62,7 @@ const FakeDataGenerator = () => {
   };
 
   useEffect(() => {
-    setJsonEditor(JSON.stringify(defaultValueOfFakerJsonEditor));
+    setJsonEditor(JSON.stringify(defaultValueOfFakerJsonEditor, null, 2));
   }, []);
 
   const fakeData = generateFakeDataGenerateMutation.data?.data;
@@ -72,7 +81,13 @@ const FakeDataGenerator = () => {
             <DialogTitle>Generate fake data</DialogTitle>
             <DialogDescription>
               You can generate fake data using the template written in the
-              editor
+              editor.{" "}
+              <Link
+                className="underline text-slate-700"
+                href={"/documentation/data-generator"}
+              >
+                See the documentation
+              </Link>
             </DialogDescription>
             <Tabs
               value={activeTab}
