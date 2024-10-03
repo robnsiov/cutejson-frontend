@@ -139,7 +139,7 @@ const Postman = () => {
             value={activeRequestMethod}
             onValueChange={(method) => setActiveRequestMethod(method)}
           >
-            <SelectTrigger className="md:w-[calc(50%-4px)] w-full">
+            <SelectTrigger className="md:w-[calc(30%-4px)] w-full">
               <SelectValue placeholder="Method" />
             </SelectTrigger>
             <SelectContent>
@@ -152,7 +152,7 @@ const Postman = () => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <div className="flex justify-center items-center md:w-[calc(50%-4px)] w-full">
+          <div className="flex justify-center items-center md:w-[calc(70%-4px)] w-full">
             <div className="mr-2 w-full">
               <Select
                 value={activeRequestUrl}
