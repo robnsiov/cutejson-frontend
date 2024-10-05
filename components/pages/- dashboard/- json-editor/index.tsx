@@ -20,7 +20,7 @@ const JsonEditor = () => {
           <Editor parentWidth={width} />
         </div>
         <div
-          className="flex justify-center items-center flex-col md:ml-4 md:w-auto w-full
+          className="flex justify-center items-center flex-col md:ml-4 md:w-auto w-full md:px-0 px-1
         md:mt-0 mt-8 pb-1"
         >
           <CuteJsonToken />
