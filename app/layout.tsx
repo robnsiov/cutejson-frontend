@@ -8,10 +8,10 @@ import cls from "classnames";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const isPROD = process.env.NODE_ENV === "production";
+
 export const metadata: Metadata = {
-  openGraph: {
-    images: "/banner.jpg",
-  },
+  metadataBase: isPROD ? new URL("https://cutejson.dev") : null,
 };
 
 export default function RootLayout({
