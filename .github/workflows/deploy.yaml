@@ -26,7 +26,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          build-args: BACKEND_ADDRES=https://api.cutejson.dev
+          build-args: BACKEND_ADDRESS=https://api.cutejson.dev
           platforms: linux/arm64
           tags: nimaa77/cutejson-fe:latest
       - name: Deploy to Coolify
