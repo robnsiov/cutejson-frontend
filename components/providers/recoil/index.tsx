@@ -1,11 +1,11 @@
 "use client";
 import { RecoilRoot } from "recoil";
-import RecoilProvderProps from "./types";
-const RecoilProvder = ({ children }: RecoilProvderProps) => {
+import RecoilProviderProps from "./types";
+const RecoilProvider = ({ children }: RecoilProviderProps) => {
   return (
     <>
       <RecoilRoot>{children}</RecoilRoot>
     </>
   );
 };
-export default RecoilProvder;
+export default RecoilProvider;

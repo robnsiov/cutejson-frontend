@@ -1,6 +1,6 @@
 import MonacoEditor, { EditorProps } from "@monaco-editor/react";
-import { Loader2 } from "lucide-react";
 import cls from "classnames";
+import { Loader2 } from "lucide-react";
 import EditorElementsProps from "./types";
 
 const Editor = (props: EditorProps & EditorElementsProps) => {

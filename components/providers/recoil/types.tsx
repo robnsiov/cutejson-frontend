@@ -1,3 +1,3 @@
-export default interface RecoilProvderProps {
+export default interface RecoilProviderProps {
   children: React.ReactNode;
 }

@@ -1,9 +1,9 @@
-import { Copy, CopySuccess } from "iconsax-react";
-import CopyToClipboardProps from "./types";
 import { Badge } from "@/components/ui/badge";
-import Tooltip from "../tooltip";
 import { useClipboard } from "@mantine/hooks";
+import { Copy, CopySuccess } from "iconsax-react";
 import { twMerge } from "tailwind-merge";
+import Tooltip from "../tooltip";
+import CopyToClipboardProps from "./types";
 
 const CopyToClipboard = ({ text, className }: CopyToClipboardProps) => {
   const clipboard = useClipboard({ timeout: 2000 });

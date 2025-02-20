@@ -1,7 +1,5 @@
 "use client";
 
-import Tooltip from "@/components/shared/tooltip";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,

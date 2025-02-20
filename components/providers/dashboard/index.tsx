@@ -1,49 +1,37 @@
 "use client";
 
+import Tooltip from "@/components/shared/tooltip";
 import { Button } from "@/components/ui/button";
-import DashboardProviderProps from "./types";
-import Link from "next/link";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
-  ArrowDown2,
-  BatteryFull,
-  Blend,
-  Box1,
-  Diamonds,
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import pages from "@/constants/pages";
+import menuIsOpenAtom from "@/recoil/menu-is-open-atom";
+import { useDidUpdate } from "@mantine/hooks";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import cls from "classnames";
+import {
   DocumentText,
   Grid3,
   HambergerMenu,
-  Home2,
-  Level,
   Microphone,
-  Personalcard,
-  TriangleLogo,
   Unlimited,
 } from "iconsax-react";
-import { ChevronRight, icons } from "lucide-react";
-import { useState } from "react";
-import cls from "classnames";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
-import pages from "@/constants/pages";
+import { ChevronRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import Tooltip from "@/components/shared/tooltip";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
-import menuIsOpenAtom from "@/recoil/menu-is-open-atom";
-import useDashboardProvider from "./use";
 import MenuItemElement from "./menu-item";
 import MenuItemElementProps from "./menu-item/types";
-import { useDidUpdate } from "@mantine/hooks";
-import Image from "next/image";
+import DashboardProviderProps from "./types";
+import useDashboardProvider from "./use";
 
 const items: Array<MenuItemElementProps> = [
   {
