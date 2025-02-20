@@ -1,11 +1,10 @@
 "use client";
 import { Toaster } from "@/components/ui/toaster";
-import RootProviderTypes from "./types";
-import useRootProvider from "./use";
+import { CONTAINER_MAX_WIDTH } from "@/constants/sizes";
 import cls from "classnames";
 import { usePathname } from "next/navigation";
-import pages from "@/constants/pages";
-import { CONTAINER_MAX_WIDTH } from "@/constants/sizes";
+import RootProviderTypes from "./types";
+import useRootProvider from "./use";
 
 const RootProvider = ({ children }: RootProviderTypes) => {
   useRootProvider();

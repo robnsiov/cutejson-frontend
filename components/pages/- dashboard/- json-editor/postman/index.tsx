@@ -13,23 +13,21 @@ import {
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-import apis from "@/constants/apis";
-import Axios from "@/utils/axios";
-import axios, { AxiosResponse } from "axios";
-import { useEffect, useMemo, useState } from "react";
-import cls from "classnames";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { useDidUpdate, useElementSize } from "@mantine/hooks";
-import { useQueryClient } from "@tanstack/react-query";
-import { useRecoilState } from "recoil";
-import jsonDBAtom from "@/recoil/json-db-atom";
-import { usePrevious } from "@mantine/hooks";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import CopyToClipboard from "@/components/shared/copy-to-clipboard";
 import Editor from "@/components/shared/editor";
 import { Badge } from "@/components/ui/badge";
-import CopyToClipboard from "@/components/shared/copy-to-clipboard";
+import { Button } from "@/components/ui/button";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import apis from "@/constants/apis";
 import baseUrls from "@/constants/base-urls";
+import jsonDBAtom from "@/recoil/json-db-atom";
+import Axios from "@/utils/axios";
+import { useDidUpdate, useElementSize, usePrevious } from "@mantine/hooks";
+import { useQueryClient } from "@tanstack/react-query";
+import axios, { AxiosResponse } from "axios";
+import cls from "classnames";
+import { useEffect, useMemo, useState } from "react";
+import { useRecoilState } from "recoil";
 
 const requestMethods = ["GET", "POST", "PUT", "DELETE"];
 const requestBodyObjectPlaceholder = { posts: { title: "foo" } };
@@ -46,7 +44,7 @@ const Postman = () => {
   const [showRequestBody, setShowRequestBody] = useState(false);
   const previousValueOfActiveRequestUrl = usePrevious(activeRequestUrl);
 
-  const [requestResponse, setRequestRespose] = useState<
+  const [requestResponse, setRequestResponse] = useState<
     AxiosResponse | undefined
   >();
   const queryClient = useQueryClient();
@@ -86,11 +84,11 @@ const Postman = () => {
         url: `${apis.userRequest}${activeRequestUrl}${requestQueryParams}`,
         data: requestBody,
       });
-      setRequestRespose(res);
+      setRequestResponse(res);
       setShowRequestBody(false);
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        setRequestRespose(err.response);
+        setRequestResponse(err.response);
       }
     } finally {
       setRequestIsLoading(false);
@@ -103,17 +101,14 @@ const Postman = () => {
 
   useDidUpdate(() => {
     if (!requestResponse) return;
-    if (
-      (activeRequestMethod === "PUT" || activeRequestMethod === "POST") &&
-      requestResponse.status <= 299
-    ) {
+    if (activeRequestMethod !== "GET" && requestResponse.status <= 299) {
       queryClient.refetchQueries({ queryKey: ["json-db"] });
     }
   }, [requestResponse]);
 
   useDidUpdate(() => {
     if (activeRequestUrl !== previousValueOfActiveRequestUrl)
-      setRequestRespose(undefined);
+      setRequestResponse(undefined);
   }, [activeRequestUrl]);
 
   useDidUpdate(() => {
@@ -128,7 +123,7 @@ const Postman = () => {
     if (!(activeRequestMethod === "POST" || activeRequestMethod === "PUT"))
       setShowRequestBody(false);
     if (activeRequestMethod === "POST") setRequestQueryParams("");
-    setRequestRespose(undefined);
+    setRequestResponse(undefined);
   }, [activeRequestMethod]);
 
   return (

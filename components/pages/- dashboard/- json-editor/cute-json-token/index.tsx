@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Tooltip from "@/components/shared/tooltip";
 import {
   Table,
   TableBody,
@@ -9,16 +9,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ArrowRotateLeft } from "iconsax-react";
-import Tooltip from "@/components/shared/tooltip";
-import { CheckCheck, Loader2 } from "lucide-react";
+import apis from "@/constants/apis";
+import userAtom from "@/recoil/user-atom";
+import Axios from "@/utils/axios";
 import { useClipboard } from "@mantine/hooks";
 import { useMutation } from "@tanstack/react-query";
-import Axios from "@/utils/axios";
-import apis from "@/constants/apis";
-import renewTokenMutationProps from "./types";
+import { ArrowRotateLeft } from "iconsax-react";
+import { CheckCheck, Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import userAtom from "@/recoil/user-atom";
+import renewTokenMutationProps from "./types";
 
 const CuteJsonToken = () => {
   const [token, setToken] = useState("");

@@ -1,16 +1,14 @@
 "use client";
-import MonacoEditor from "@monaco-editor/react";
-import useMonacoEditor from "./use";
-import PrimaryButton from "@/components/ui/primary-button";
-import { Loader2 } from "lucide-react";
-import cls from "classnames";
 import EditorElement from "@/components/shared/editor";
+import PrimaryButton from "@/components/ui/primary-button";
+import cls from "classnames";
+import useMonacoEditor from "./use";
 // import { useElementSize } from "@mantine/hooks";
-import { useViewportSize } from "@mantine/hooks";
-import EditorProps from "./types";
-import { useRecoilState } from "recoil";
-import menuIsOpenAtom from "@/recoil/menu-is-open-atom";
 import { CONTAINER_MAX_WIDTH } from "@/constants/sizes";
+import menuIsOpenAtom from "@/recoil/menu-is-open-atom";
+import { useViewportSize } from "@mantine/hooks";
+import { useRecoilState } from "recoil";
+import EditorProps from "./types";
 
 const Editor = ({ parentWidth }: EditorProps) => {
   const {
@@ -28,7 +26,7 @@ const Editor = ({ parentWidth }: EditorProps) => {
   const { width: viewportWidth } = useViewportSize();
   const vpWidth =
     viewportWidth > CONTAINER_MAX_WIDTH ? CONTAINER_MAX_WIDTH : viewportWidth;
-  const [mesuIsOpen] = useRecoilState(menuIsOpenAtom);
+  const [menuIsOpen] = useRecoilState(menuIsOpenAtom);
 
   return (
     <>
@@ -38,7 +36,7 @@ const Editor = ({ parentWidth }: EditorProps) => {
             width:
               vpWidth < 1024
                 ? vpWidth - 50 + "px"
-                : vpWidth - 320 + (!mesuIsOpen ? 170 : 0) - 330 + "px",
+                : vpWidth - 320 + (!menuIsOpen ? 170 : 0) - 330 + "px",
           }}
           className=" w-full md:h-[calc(100vh-150px)] h-[50vh] border border-slate-200 rounded-lg p-4 pl-0 relative
           "

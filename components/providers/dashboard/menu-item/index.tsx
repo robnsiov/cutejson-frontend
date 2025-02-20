@@ -1,13 +1,12 @@
 import { Button } from "@/components/ui/button";
-import MenuItemElementProps from "./types";
-import MenuItemProps from "./types";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+import documentationPages from "@/constants/documentation-pages";
+import cls from "classnames";
 import { ArrowDown2 } from "iconsax-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import cls from "classnames";
-import documentationPages from "@/constants/documentation-pages";
+import MenuItemElementProps from "./types";
 
 const MenuItemElement = ({
   href,

@@ -1,8 +1,8 @@
+import Link from "next/link";
+import React from "react";
 import MD from "react-markdown";
 import remarkGfm from "remark-gfm";
 import MarkdownProps from "./types";
-import React from "react";
-import Link from "next/link";
 
 function flatten(text: string, child: any): any {
   return typeof child === "string"

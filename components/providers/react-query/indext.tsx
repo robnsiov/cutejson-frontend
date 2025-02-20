@@ -1,5 +1,7 @@
 "use client";
 
+import { useToast } from "@/components/ui/use-toast";
+import { TOAST_FAIL_TITLE } from "@/constants/toast";
 import {
   isServer,
   MutationCache,
@@ -7,11 +9,8 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-import ReqctQueryProviderTypes, { ToastProps } from "./types";
-import Axios from "@/utils/axios";
-import { useToast } from "@/components/ui/use-toast";
 import axios, { AxiosError } from "axios";
-import { TOAST_FAIL_TITLE } from "@/constants/toast";
+import ReqctQueryProviderTypes, { ToastProps } from "./types";
 
 const makeQueryClient = (toast: ToastProps) => {
   return new QueryClient({

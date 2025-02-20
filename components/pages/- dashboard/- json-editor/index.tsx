@@ -1,11 +1,11 @@
 "use client";
 import { useElementSize } from "@mantine/hooks";
+import ApisList from "./apis-list";
 import CuteJsonToken from "./cute-json-token";
 import Editor from "./editor";
-import Postman from "./postman";
 import FakeDataGenerator from "./fake-data-generator";
+import Postman from "./postman";
 import RecoveryDB from "./recovery-db";
-import ApisList from "./apis-list";
 
 const JsonEditor = () => {
   const { ref, width } = useElementSize();

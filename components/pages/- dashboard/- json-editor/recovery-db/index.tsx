@@ -1,8 +1,7 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
+import CopyToClipboard from "@/components/shared/copy-to-clipboard";
 import { Button } from "@/components/ui/button";
-import cls from "classnames";
 import {
   Dialog,
   DialogContent,
@@ -12,18 +11,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import PrimaryButton from "@/components/ui/primary-button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Skeleton } from "@/components/ui/skeleton";
 import apis from "@/constants/apis";
 import Axios from "@/utils/axios";
-import { useClipboard, useDidUpdate } from "@mantine/hooks";
+import { useDidUpdate } from "@mantine/hooks";
 import { useQuery } from "@tanstack/react-query";
-import { CheckCheck, Loader2 } from "lucide-react";
+import cls from "classnames";
+import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import CopyToClipboard from "@/components/shared/copy-to-clipboard";
 const RecoveryDB = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedBackupDate, setSelectedBackupDate] = useState("");

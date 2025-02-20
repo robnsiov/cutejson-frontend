@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { editor } from "monaco-editor";
 import { useToast } from "@/components/ui/use-toast";
-import { TOAST_FAIL_TITLE } from "@/constants/toast";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import Axios from "@/utils/axios";
 import apis from "@/constants/apis";
+import { TOAST_FAIL_TITLE } from "@/constants/toast";
+import jsonDBAtom from "@/recoil/json-db-atom";
+import Axios from "@/utils/axios";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { editor } from "monaco-editor";
+import { useEffect, useState } from "react";
 import { useTimer } from "react-timer-hook";
 import { useRecoilState } from "recoil";
-import jsonDBAtom from "@/recoil/json-db-atom";
 
 const date = new Date();
 const useMonacoEditor = () => {
@@ -44,7 +44,7 @@ const useMonacoEditor = () => {
     if (jsonDBQuery.isFetched && editorHasMounted) setEditorLoading(false);
   }, [jsonDBQuery, editorHasMounted]);
 
-  const editJsonDBMutattion = useMutation({
+  const editJsonDBMutation = useMutation({
     mutationFn: (data: Object) =>
       Axios({ url: apis.editJsonDB, method: "PUT", data }),
     onSuccess() {
@@ -66,7 +66,7 @@ const useMonacoEditor = () => {
     }
     if (timerIsRunning) return;
     if (editorLoading) return;
-    editJsonDBMutattion.mutate(json);
+    editJsonDBMutation.mutate(json);
   };
 
   useEffect(() => {
@@ -81,7 +81,6 @@ const useMonacoEditor = () => {
     return () => window.removeEventListener("keydown", ctrlPlusSpreventaion);
   }, [json, validate, timerIsRunning]);
 
-
   const onChange = (editorOutput: string | undefined) => {
     if (!editorOutput) return;
     setJson(editorOutput);
@@ -90,7 +89,7 @@ const useMonacoEditor = () => {
   return {
     onChange,
     setValidate,
-    isPendingSave: editJsonDBMutattion.isPending,
+    isPendingSave: editJsonDBMutation.isPending,
     json,
     setEditorHasMounted,
     editorLoading,
